@@ -9,7 +9,7 @@
         <version>8</version>
     </parent>
 
-    <artifactId>learn-java</artifactId>
+    <artifactId>trash</artifactId>
     <packaging>jar</packaging>
 
     <version>1.0.0</version>
