@@ -4,6 +4,7 @@ import java.util.*;
 
 /**
  * 简易 JSON 解析器练习
+ * todo 解析出错时提示友好的错误信息
  */
 public final class JsonParser {
 
