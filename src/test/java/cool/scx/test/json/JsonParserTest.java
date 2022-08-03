@@ -1,16 +1,23 @@
-package cool.scx.learn.json;
+package cool.scx.test.json;
 
 import cool.scx.config.ScxEnvironment;
+import cool.scx.learn.json.JsonParser;
 import cool.scx.util.ObjectUtils;
 import cool.scx.util.StopWatch;
+import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.nio.file.Files;
 
-public class JsonTest {
+public class JsonParserTest {
 
     public static void main(String[] args) throws IOException {
-        var environment = new ScxEnvironment(JsonTest.class);
+        test1();
+    }
+
+    @Test
+    private static void test1() throws IOException {
+        var environment = new ScxEnvironment(JsonParserTest.class);
         var json = Files.readString(environment.getPathByAppRoot("AppRoot:test.json"));
 
         StopWatch.start("666");
@@ -37,7 +44,6 @@ public class JsonTest {
         System.out.println(StopWatch.stopToMillis("1"));
 
         System.out.println(o);
-
     }
 
 }

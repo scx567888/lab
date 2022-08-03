@@ -3,7 +3,7 @@ package cool.scx.learn.json;
 import java.util.*;
 
 /**
- * 简易 JSON 解析器
+ * 简易 JSON 解析器练习
  */
 public final class JsonParser {
 
