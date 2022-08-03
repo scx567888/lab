@@ -4,6 +4,7 @@ import java.util.*;
 
 /**
  * 简易 JSON 解析器练习
+ * todo 解析出错时提示友好的错误信息
  */
 public final class JsonParser {
 
@@ -35,6 +36,48 @@ public final class JsonParser {
      */
     public static Object read(String json) {
         return new JsonParser(json).parseValue();
+    }
+
+    /**
+     * 将对象转换为 json 字符串
+     *
+     * @param o 对象
+     * @return a
+     */
+    public static String toJson(Object o) {
+        if (o instanceof Map<?, ?> m) {
+            var sb = new StringBuilder();
+            var i = m.entrySet().iterator();
+            sb.append('{');
+            while (true) {
+                var e = i.next();
+                var key = e.getKey();
+                var value = e.getValue();
+                sb.append('"').append(key).append('"');
+                sb.append(":");
+                sb.append(toJson(value));
+                if (!i.hasNext()) {
+                    return sb.append('}').toString();
+                }
+                sb.append(',');
+            }
+        } else if (o instanceof String s) {
+            return "\"" + s + "\"";
+        } else if (o instanceof List<?> l) {
+            var sb = new StringBuilder();
+            var i = l.iterator();
+            sb.append("[");
+            while (true) {
+                var value = i.next();
+                sb.append(toJson(value));
+                if (!i.hasNext()) {
+                    return sb.append(']').toString();
+                }
+                sb.append(',');
+            }
+        } else {
+            return o.toString();
+        }
     }
 
     /**
