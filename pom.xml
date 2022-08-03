@@ -24,6 +24,12 @@
 
         <dependency>
             <groupId>cool.scx</groupId>
+            <artifactId>scx-config</artifactId>
+            <version>0.0.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cool.scx</groupId>
             <artifactId>scx-logging</artifactId>
             <version>0.0.3</version>
         </dependency>
