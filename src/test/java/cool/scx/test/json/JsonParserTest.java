@@ -35,7 +35,7 @@ public class JsonParserTest {
         }
         System.out.println(StopWatch.stopToMillis("123"));
 
-        System.out.println(o);
+        System.out.println(JsonParser.toJson(o));
 
         StopWatch.start("1");
         for (int i = 0; i < 99999; i++) {
@@ -43,7 +43,7 @@ public class JsonParserTest {
         }
         System.out.println(StopWatch.stopToMillis("1"));
 
-        System.out.println(o);
+        System.out.println(o.toString());
     }
 
 }

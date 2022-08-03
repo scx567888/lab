@@ -38,6 +38,48 @@ public final class JsonParser {
     }
 
     /**
+     * 将对象转换为 json 字符串
+     *
+     * @param o 对象
+     * @return a
+     */
+    public static String toJson(Object o) {
+        if (o instanceof Map<?, ?> m) {
+            var sb = new StringBuilder();
+            var i = m.entrySet().iterator();
+            sb.append('{');
+            while (true) {
+                var e = i.next();
+                var key = e.getKey();
+                var value = e.getValue();
+                sb.append('"').append(key).append('"');
+                sb.append(":");
+                sb.append(toJson(value));
+                if (!i.hasNext()) {
+                    return sb.append('}').toString();
+                }
+                sb.append(',');
+            }
+        } else if (o instanceof String s) {
+            return "\"" + s + "\"";
+        } else if (o instanceof List<?> l) {
+            var sb = new StringBuilder();
+            var i = l.iterator();
+            sb.append("[");
+            while (true) {
+                var value = i.next();
+                sb.append(toJson(value));
+                if (!i.hasNext()) {
+                    return sb.append(']').toString();
+                }
+                sb.append(',');
+            }
+        } else {
+            return o.toString();
+        }
+    }
+
+    /**
      * 判断字符是否属于 可以构成 json 数字值的部分
      *
      * @param c 字符
