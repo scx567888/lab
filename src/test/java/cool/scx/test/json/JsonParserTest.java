@@ -38,7 +38,7 @@ public class JsonParserTest {
             o = JsonParser.read(json);
         }
         System.out.println("my json parser : " + StopWatch.stopToMillis("a"));
-        System.out.println(JsonParser.toJson(o,true));
+        System.out.println(JsonParser.toJson(o, true));
         System.out.println(JsonParser.toJson(o));
 
 

@@ -50,7 +50,8 @@ public final class JsonParser {
 
     /**
      * 将对象转换为 json 字符串
-     * @param o 对象
+     *
+     * @param o        对象
      * @param beautify 是否格式化
      * @return json
      */
@@ -60,8 +61,9 @@ public final class JsonParser {
 
     /**
      * 将对象转换为 json 字符串
-     * @param o 对象
-     * @param deep 当前层级
+     *
+     * @param o        对象
+     * @param deep     当前层级
      * @param beautify 是否格式化
      * @return json
      */
