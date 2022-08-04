@@ -45,35 +45,70 @@ public final class JsonParser {
      * @return a
      */
     public static String toJson(Object o) {
+        return toJson(o, false);
+    }
+
+    /**
+     * 将对象转换为 json 字符串
+     * @param o 对象
+     * @param beautify 是否格式化
+     * @return json
+     */
+    public static String toJson(Object o, boolean beautify) {
+        return toJson0(o, 0, beautify);
+    }
+
+    /**
+     * 将对象转换为 json 字符串
+     * @param o 对象
+     * @param deep 当前层级
+     * @param beautify 是否格式化
+     * @return json
+     */
+    private static String toJson0(Object o, int deep, boolean beautify) {
+        var openBrace = "{";
+        var closeBrace = "}";
+        var leftBracket = "[";
+        var rightBracket = "]";
+        var comma = ",";
+        var colon = ":";
+        var tab = "";
+        if (beautify) {
+            openBrace = "{" + System.lineSeparator();
+            closeBrace = System.lineSeparator() + " ".repeat(deep * 2) + "}";
+            leftBracket = "[" + System.lineSeparator();
+            rightBracket = System.lineSeparator() + " ".repeat(deep * 2) + "]";
+            comma = "," + System.lineSeparator();
+            colon = ": ";
+            tab = " ".repeat((deep + 1) * 2);
+        }
         if (o instanceof Map<?, ?> m) {
-            var sb = new StringBuilder();
             var i = m.entrySet().iterator();
-            sb.append('{');
+            var sb = new StringBuilder(openBrace);
             while (true) {
                 var e = i.next();
                 var key = e.getKey();
                 var value = e.getValue();
-                sb.append('"').append(key).append('"');
-                sb.append(":");
-                sb.append(toJson(value));
+                sb.append(tab).append('"').append(key).append('"');
+                sb.append(colon);
+                sb.append(toJson0(value, deep + 1, beautify));
                 if (!i.hasNext()) {
-                    return sb.append('}').toString();
+                    return sb.append(closeBrace).toString();
                 }
-                sb.append(',');
+                sb.append(comma);
             }
         } else if (o instanceof String s) {
-            return "\"" + s + "\"";
+            return '"' + s + '"';
         } else if (o instanceof List<?> l) {
-            var sb = new StringBuilder();
             var i = l.iterator();
-            sb.append("[");
+            var sb = new StringBuilder(leftBracket);
             while (true) {
                 var value = i.next();
-                sb.append(toJson(value));
+                sb.append(tab).append(toJson0(value, deep + 1, beautify));
                 if (!i.hasNext()) {
-                    return sb.append(']').toString();
+                    return sb.append(rightBracket).toString();
                 }
-                sb.append(',');
+                sb.append(comma);
             }
         } else {
             return o.toString();
