@@ -11,12 +11,11 @@ public class TestVirtualThread {
 
     @Test
     public static void test1() throws InterruptedException {
-        var vThread = Thread.ofVirtual();
         for (int i = 0; i < 999; i++) {
             int finalI = i;
-            vThread.start(() -> {
+            Thread.startVirtualThread(() -> {
                 ScxExceptionHelper.ignore(() -> Thread.sleep(10));
-                System.out.println(finalI);
+                System.out.println(finalI + " : " + Thread.currentThread());
             }).join();
         }
     }
