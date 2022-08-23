@@ -36,4 +36,38 @@
 
     </dependencies>
 
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <compilerArgs>
+                        <!-- 通知 JDK 使编译后 class 文件携带参数名称 -->
+                        <arg>-parameters</arg>
+                        <arg>--enable-preview</arg>
+                    </compilerArgs>
+                    <!-- 编码 -->
+                    <encoding>${scx.encoding}</encoding>
+                    <!-- 指定编译时的 JDK 版本 -->
+                    <release>${_java.version}</release>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <argLine>--enable-preview</argLine>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+    <properties>
+        <_java.version>19</_java.version>
+    </properties>
+
 </project>
