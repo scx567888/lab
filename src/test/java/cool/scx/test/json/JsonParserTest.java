@@ -25,7 +25,7 @@ public class JsonParserTest {
         for (int i = 0; i < 999; i++) {
             var s = JsonParser.read(json);
             s = ObjectUtils.jsonMapper().readTree(json);
-            StopWatch.start(i + "");
+            StopWatch.start(i + "-");
         }
 
         //临时对象
