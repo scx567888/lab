@@ -67,7 +67,8 @@
     </build>
 
     <properties>
-        <_java.version>19</_java.version>
+<!--        <_java.version>19</_java.version>-->
+        <_java.version>17</_java.version>
     </properties>
 
 </project>
