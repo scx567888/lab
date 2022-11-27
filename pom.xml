@@ -9,7 +9,7 @@
         <version>13</version>
     </parent>
 
-    <artifactId>trash</artifactId>
+    <artifactId>learn-java</artifactId>
     <packaging>jar</packaging>
 
     <version>1.0.0</version>
@@ -74,8 +74,7 @@
     </build>
 
     <properties>
-<!--        <_java.version>19</_java.version>-->
-        <_java.version>17</_java.version>
+        <_java.version>19</_java.version>
     </properties>
 
 </project>
