@@ -9,7 +9,7 @@
         <version>13</version>
     </parent>
 
-    <artifactId>trash</artifactId>
+    <artifactId>learn-java</artifactId>
     <packaging>jar</packaging>
 
     <version>1.0.0</version>
@@ -32,6 +32,13 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/commons-dbutils/commons-dbutils -->
+        <dependency>
+            <groupId>commons-dbutils</groupId>
+            <artifactId>commons-dbutils</artifactId>
+            <version>1.7</version>
         </dependency>
 
     </dependencies>
