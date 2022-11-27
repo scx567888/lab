@@ -1,4 +1,4 @@
-package cool.scx.learn.reflect_and_invoke;
+package cool.scx.test.reflect_and_invoke;
 
 import cool.scx.util.StopWatch;
 

@@ -1,7 +1,7 @@
-package cool.scx.learn.reflect_and_invoke;
+package cool.scx.test.reflect_and_invoke;
 
-import cool.scx.learn.reflect_and_invoke.bean.Person;
-import cool.scx.learn.reflect_and_invoke.bean.User;
+import cool.scx.test.reflect_and_invoke.bean.Person;
+import cool.scx.test.reflect_and_invoke.bean.User;
 
 import java.lang.invoke.*;
 import java.lang.reflect.Constructor;

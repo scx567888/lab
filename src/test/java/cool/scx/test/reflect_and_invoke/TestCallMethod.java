@@ -1,18 +1,18 @@
-package cool.scx.learn.reflect_and_invoke;
+package cool.scx.test.reflect_and_invoke;
+
+import cool.scx.test.reflect_and_invoke.bean.User;
 
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.reflect.Method;
 
-class TestCallMethod {
-
-    public String someField;
-
-    public String someField() {
-        return someField;
-    }
+/**
+ * 可以看到 ,在 jdk-18 以后 反射的性能已经相当高了
+ */
+public class TestCallMethod {
 
     static final Method method = initMethod();
+
     static final MethodHandle mh = initMH();
 
     private static MethodHandle initMH() {
@@ -26,7 +26,7 @@ class TestCallMethod {
     private static Method initMethod() {
         Method method;
         try {
-            method = TestCallMethod.class.getMethod("someField");
+            method = User.class.getMethod("name");
         } catch (NoSuchMethodException e) {
             throw new RuntimeException(e);
         }
@@ -34,55 +34,58 @@ class TestCallMethod {
         return method;
     }
 
-    public static void main(String[] args) throws Throwable {
-        var t = new TestCallMethod();
-        t.someField = "名字";
-        mh.bindTo(t);
+    public static Object normal(User t) throws Throwable {
         System.out.println("---- normal ----");
-        normal(t);
-        System.out.println("---- reflect ----");
-        reflect(t);
-        System.out.println("---- methodHandle ----");
-        methodHandle(t);
-    }
-
-    public static Object normal(TestCallMethod t) throws Throwable {
+        var log = new TestNew.Log();
         Object value = null;
-        for (int outer = 0; outer < 30; outer++) {
+        for (int outer = 0; outer < 50; outer++) {
             long start = System.nanoTime();
             for (int i = 0; i < 100000000; i++) {
-                value = t.someField();
+                value = t.name();
             }
-            long time = (System.nanoTime() - start) / 1000000;
-            System.out.println("it took" + time + "ms");
+            log.add((System.nanoTime() - start));
         }
+        log.log();
         return value;
     }
 
-    public static Object reflect(TestCallMethod t) throws Throwable {
+    public static Object reflect(User t) throws Throwable {
+        System.out.println("---- reflect ----");
+        var log = new TestNew.Log();
         Object value = null;
-        for (int outer = 0; outer < 30; outer++) {
+        for (int outer = 0; outer < 50; outer++) {
             long start = System.nanoTime();
             for (int i = 0; i < 100000000; i++) {
                 value = method.invoke(t);
             }
-            long time = (System.nanoTime() - start) / 1000000;
-            System.out.println("it took" + time + "ms");
+            log.add((System.nanoTime() - start));
         }
+        log.log();
         return value;
     }
 
-    public static Object methodHandle(TestCallMethod t) throws Throwable {
+    public static Object methodHandle(User t) throws Throwable {
+        System.out.println("---- methodHandle ----");
+        var log = new TestNew.Log();
         Object value = null;
-        for (int outer = 0; outer < 30; outer++) {
+        for (int outer = 0; outer < 50; outer++) {
             long start = System.nanoTime();
             for (int i = 0; i < 100000000; i++) {
                 value = mh.invoke(t);
             }
-            long time = (System.nanoTime() - start) / 1000000;
-            System.out.println("it took" + time + "ms");
+            log.add((System.nanoTime() - start));
         }
+        log.log();
         return value;
+    }
+
+
+    public static void main(String[] args) throws Throwable {
+        var t = new User();
+        t.name = "scx";
+        normal(t);
+        reflect(t);
+        methodHandle(t);
     }
 
 }
