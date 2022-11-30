@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import java.util.concurrent.CompletableFuture;
 
 /**
- * @see <a href='http://bugs.java.com/bugdatabase/view_bug.do?bug_id=JDK-8293066'>http://bugs.java.com/bugdatabase/view_bug.do?bug_id=JDK-8293066<a/>
+ * @see <a href='https://bugs.java.com/bugdatabase/view_bug.do?bug_id=JDK-8293066'>https://bugs.java.com/bugdatabase/view_bug.do?bug_id=JDK-8293066<a/>
  */
 public class JDK19BUGDemo {
 
