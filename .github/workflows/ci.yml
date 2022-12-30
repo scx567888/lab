@@ -3,7 +3,7 @@ on: [ push, pull_request ]
 jobs:
   build-and-test:
     name: 构建和测试
-    runs-on: ubuntu-latest
+    runs-on: [ubuntu-latest, windows-latest]
     steps:
 
       - name: 签出代码
