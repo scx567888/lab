@@ -5,6 +5,7 @@ import cool.scx.config.ScxEnvironment;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.MultiResolutionImage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
