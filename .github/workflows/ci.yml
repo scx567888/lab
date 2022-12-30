@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: 启动默认的 MySQL # See https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-Readme.md#mysql
-        if: ${{ runner.os == "Linux" }}
+        if: ${{ runner.os == Linux }}
         run: sudo systemctl start mysql.service
 
       - name: 安装 JDK 19
