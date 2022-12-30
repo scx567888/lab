@@ -1,12 +1,37 @@
 package cool.scx.learn.foreign_function;
 
+import cool.scx.config.ScxEnvironment;
+
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+
 import static cool.scx.learn.foreign_function.Demo1.detectIfAnsiCapable;
 
 public class Demo2 {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, AWTException, IOException {
         beforeTest();
         test1();
+        var s=new ScxEnvironment(Demo2.class);
+
+        //创建一个robot对象
+        Robot robut=new Robot();
+        //获取屏幕分辨率
+        Dimension d=  Toolkit.getDefaultToolkit().getScreenSize();
+        //打印屏幕分辨率
+        System.out.println(d);
+        //创建该分辨率的矩形对象
+        Rectangle screenRect=new  Rectangle(d);
+        //根据这个矩形截图
+        BufferedImage bufferedImage=robut.createScreenCapture(screenRect);
+        //保存截图
+        var file=s.getTempPath("截图1.png");
+        Files.createDirectories(file);
+        ImageIO.write(bufferedImage,"png",file.toFile());
     }
 
     public static void beforeTest() {
@@ -20,7 +45,6 @@ public class Demo2 {
             s[0] = new Ansi8BitColor(i);
             s[1] = new Ansi8BitBackground(255 - i);
             s[2] = "●★▲";
-
             if ((i + 1) % 8 == 0) {
                 System.out.println(buildEnabled(s));
             } else {
