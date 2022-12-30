@@ -1,6 +1,7 @@
 package cool.scx.test.foreign_function;
 
 
+import cool.scx.util.ansi.Ansi;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -21,6 +22,7 @@ public class Test1 {
 
     @Test
     public static void test1() {
+        Ansi.out().red("☻").print();
         for (int i = 0; i < 255; i++) {
             for (int j = 0; j < 255; j++) {
                 var s = new Object[3];
