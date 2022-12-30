@@ -22,7 +22,7 @@ public class Test1 {
 
     @Test
     public static void test1() {
-        Ansi.out().red("☻").print();
+        Ansi.out().red("666").print();
         for (int i = 0; i < 255; i++) {
             for (int j = 0; j < 255; j++) {
                 var s = new Object[3];
