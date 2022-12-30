@@ -3,13 +3,17 @@ on: [ push, pull_request ]
 jobs:
   build-and-test:
     name: 构建和测试
-    runs-on: [ubuntu-latest, windows-latest]
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, windows-latest ]
+    runs-on: ${{ matrix.os }}
     steps:
 
       - name: 签出代码
         uses: actions/checkout@v3
 
       - name: 启动默认的 MySQL # See https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-Readme.md#mysql
+        if: ${{ runner.os == "Linux" }}
         run: sudo systemctl start mysql.service
 
       - name: 安装 JDK 19
