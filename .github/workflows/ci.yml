@@ -17,7 +17,7 @@ jobs:
         if: ${{ runner.os == 'Linux' }}
         run: sudo systemctl start mysql.service
 
-      - name: 安装 JDK 19
+      - name: 安装 JDK ${{ matrix.jdk }}
         uses: actions/setup-java@v3
         with:
           distribution: temurin
