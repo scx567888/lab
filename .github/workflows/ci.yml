@@ -17,11 +17,11 @@ jobs:
         if: ${{ runner.os == 'Linux' }}
         run: sudo systemctl start mysql.service
 
-      - name: 安装 JDK ${{ matrix.jdk }}
+      - name: 安装 JDK ${{ matrix.java }}
         uses: actions/setup-java@v3
         with:
           distribution: temurin
-          java-version: ${{ matrix.jdk }}
+          java-version: ${{ matrix.java }}
           cache: maven
 
       - name: 使用 Maven 进行构建和测试
@@ -30,5 +30,5 @@ jobs:
       - name: 上传 构建和测试 生成的文件
         uses: actions/upload-artifact@v3
         with:
-          name: learn-java-artifact-${{ runner.os }}
+          name: learn-java-artifact-${{ runner.os }}-${{ matrix.java }}
           path: target/
