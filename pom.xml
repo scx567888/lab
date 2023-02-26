@@ -77,7 +77,7 @@
     </build>
 
     <properties>
-        <scx.javaVersion>17</scx.javaVersion>
+        <scx.javaVersion>19</scx.javaVersion>
     </properties>
 
 </project>
