@@ -13,6 +13,13 @@
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
+    <repositories>
+        <repository>
+            <id>aliyun</id>
+            <url>https://maven.aliyun.com/repository/central/</url>
+        </repository>
+    </repositories>
+
     <dependencies>
 
         <dependency>
@@ -25,6 +32,18 @@
             <groupId>cool.scx</groupId>
             <artifactId>scx-logging</artifactId>
             <version>2.0.13</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty5-all</artifactId>
+            <version>5.0.0.Alpha5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcpkix-jdk18on</artifactId>
+            <version>1.72</version>
         </dependency>
 
         <dependency>
@@ -58,7 +77,7 @@
     </build>
 
     <properties>
-        <scx.javaVersion>19</scx.javaVersion>
+        <scx.javaVersion>17</scx.javaVersion>
     </properties>
 
 </project>
