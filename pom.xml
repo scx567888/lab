@@ -6,8 +6,8 @@
     <parent>
         <groupId>cool.scx</groupId>
         <artifactId>scx-parent</artifactId>
-        <version>16-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>15</version>
+        <relativePath/>
     </parent>
 
     <artifactId>learn-java</artifactId>
