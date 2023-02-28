@@ -13,13 +13,6 @@
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <repositories>
-        <repository>
-            <id>aliyun</id>
-            <url>https://maven.aliyun.com/repository/central/</url>
-        </repository>
-    </repositories>
-
     <dependencies>
 
         <dependency>
