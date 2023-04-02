@@ -1,8 +1,8 @@
 package cool.scx.learn.foreign_function;
 
-import java.lang.foreign.*;
+//import java.lang.foreign.*;
 
-import static java.lang.foreign.ValueLayout.*;
+//import static java.lang.foreign.ValueLayout.*;
 
 public class Demo1 {
 
@@ -36,33 +36,33 @@ public class Demo1 {
      * Reported issue: <a href="https://github.com/PowerShell/PowerShell/issues/11449#issuecomment-569531747">...</a>
      */
     private static void enableWindows10AnsiSupport() {
-
-        try (var session = MemorySession.openConfined()) {
-            var linker = Linker.nativeLinker();
-            var kernel32 = SymbolLookup.libraryLookup("kernel32", session);
-
-            // See https://learn.microsoft.com/zh-cn/windows/console/getstdhandle
-            var GetStdHandle = kernel32.lookup("GetStdHandle").orElse(null);
-            var GetStdHandleHandle = linker.downcallHandle(GetStdHandle, FunctionDescriptor.of(ADDRESS, JAVA_LONG));
-            var hOut = GetStdHandleHandle.invoke(-11);
-
-            //See https://learn.microsoft.com/zh-cn/windows/console/getconsolemode
-            var GetConsoleMode = kernel32.lookup("GetConsoleMode").orElse(null);
-            var GetConsoleModeHandle = linker.downcallHandle(GetConsoleMode, FunctionDescriptor.of(JAVA_BOOLEAN, ADDRESS, ADDRESS));
-            var allocator = SegmentAllocator.implicitAllocator();
-            var lpModeMemorySegment = allocator.allocate(JAVA_LONG);
-            GetConsoleModeHandle.invoke(hOut, lpModeMemorySegment);
-
-            //See https://learn.microsoft.com/zh-cn/windows/console/setconsolemode
-            int ENABLE_VIRTUAL_TERMINAL_PROCESSING = 4;
-            var SetConsoleMode = kernel32.lookup("SetConsoleMode").orElse(null);
-            var SetConsoleModeHandle = linker.downcallHandle(SetConsoleMode, FunctionDescriptor.of(JAVA_LONG, ADDRESS, JAVA_LONG));
-            long lpMode = lpModeMemorySegment.getAtIndex(JAVA_LONG, 0);
-            var dwMode = lpMode | ENABLE_VIRTUAL_TERMINAL_PROCESSING;
-            SetConsoleModeHandle.invoke(hOut, dwMode);
-        } catch (Throwable e) {
-            throw new RuntimeException(e);
-        }
+// 此处代码为 jdk19 版本, 现已失效 需更改为 jdk20
+//        try (var session = MemorySession.openConfined()) {
+//            var linker = Linker.nativeLinker();
+//            var kernel32 = SymbolLookup.libraryLookup("kernel32", session);
+//
+//            // See https://learn.microsoft.com/zh-cn/windows/console/getstdhandle
+//            var GetStdHandle = kernel32.lookup("GetStdHandle").orElse(null);
+//            var GetStdHandleHandle = linker.downcallHandle(GetStdHandle, FunctionDescriptor.of(ADDRESS, JAVA_LONG));
+//            var hOut = GetStdHandleHandle.invoke(-11);
+//
+//            //See https://learn.microsoft.com/zh-cn/windows/console/getconsolemode
+//            var GetConsoleMode = kernel32.lookup("GetConsoleMode").orElse(null);
+//            var GetConsoleModeHandle = linker.downcallHandle(GetConsoleMode, FunctionDescriptor.of(JAVA_BOOLEAN, ADDRESS, ADDRESS));
+//            var allocator = SegmentAllocator.implicitAllocator();
+//            var lpModeMemorySegment = allocator.allocate(JAVA_LONG);
+//            GetConsoleModeHandle.invoke(hOut, lpModeMemorySegment);
+//
+//            //See https://learn.microsoft.com/zh-cn/windows/console/setconsolemode
+//            int ENABLE_VIRTUAL_TERMINAL_PROCESSING = 4;
+//            var SetConsoleMode = kernel32.lookup("SetConsoleMode").orElse(null);
+//            var SetConsoleModeHandle = linker.downcallHandle(SetConsoleMode, FunctionDescriptor.of(JAVA_LONG, ADDRESS, JAVA_LONG));
+//            long lpMode = lpModeMemorySegment.getAtIndex(JAVA_LONG, 0);
+//            var dwMode = lpMode | ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+//            SetConsoleModeHandle.invoke(hOut, dwMode);
+//        } catch (Throwable e) {
+//            throw new RuntimeException(e);
+//        }
 
     }
 
