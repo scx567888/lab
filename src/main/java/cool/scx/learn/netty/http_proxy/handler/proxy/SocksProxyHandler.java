@@ -10,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-
 public class SocksProxyHandler extends ChannelInboundHandlerAdapter implements IProxyHandler {
     private Logger logger = LoggerFactory.getLogger(HttpsProxyHandler.class);
 

@@ -4,13 +4,13 @@ public class Main2 {
 
     public static void main(String[] args) throws InterruptedException {
 
-        new Thread(()->{
+        new Thread(() -> {
             while (true) {
 
             }
         }).start();
 
-        new Thread(()->{
+        new Thread(() -> {
             try {
                 Thread.sleep(100000000L);
             } catch (InterruptedException e) {
