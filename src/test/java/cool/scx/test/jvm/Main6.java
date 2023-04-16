@@ -6,7 +6,7 @@ public class Main6 {
 
     }
 
-    public static void f1(String name,Integer age) {
+    public static void f1(String name, Integer age) {
 
     }
 
