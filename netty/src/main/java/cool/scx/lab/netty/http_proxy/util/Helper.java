@@ -9,7 +9,7 @@ public final class Helper {
 
     public static final AttributeKey<ClientHttpRequest> CLIENT_HTTP_REQUEST_KEY = AttributeKey.valueOf("clientHttpRequest");
 
-    public static final HttpResponseStatus CONNECT_SUCCESS = new HttpResponseStatus(200, "Connection established");
+    public  static final HttpResponseStatus CONNECT_SUCCESS = new HttpResponseStatus(200, "Connection established");
 
     /**
      * 获取代理请求

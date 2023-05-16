@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
+
 public class SocksResponseHandler extends ChannelInboundHandlerAdapter {
     private Logger logger = LoggerFactory.getLogger(SocksResponseHandler.class);
     private Channel clientChannel;
