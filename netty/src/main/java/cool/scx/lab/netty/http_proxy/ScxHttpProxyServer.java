@@ -3,9 +3,9 @@ package cool.scx.lab.netty.http_proxy;
 
 
 //import cool.scx.learn.netty5.http_proxy.handler.proxy.HttpProxyHandler;
-import cool.scx.learn.netty.http_proxy.handler.proxy.HttpProxyHandler;
-import cool.scx.learn.netty.http_proxy.handler.proxy.HttpsProxyHandler;
-import cool.scx.learn.netty.http_proxy.handler.proxy.SocksProxyHandler;
+import cool.scx.lab.netty.http_proxy.handler.proxy.HttpProxyHandler;
+import cool.scx.lab.netty.http_proxy.handler.proxy.HttpsProxyHandler;
+import cool.scx.lab.netty.http_proxy.handler.proxy.SocksProxyHandler;
 import cool.scx.logging.ScxLoggerFactory;
 import cool.scx.logging.ScxLoggingLevel;
 import io.netty.bootstrap.ServerBootstrap;

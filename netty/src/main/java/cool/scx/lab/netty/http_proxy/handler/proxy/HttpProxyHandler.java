@@ -1,8 +1,8 @@
 package cool.scx.lab.netty.http_proxy.handler.proxy;
 
 import cool.scx.lab.netty.http_proxy.handler.response.HttpProxyResponseHandler;
-import cool.scx.learn.netty.http_proxy.util.ClientHttpRequest;
-import cool.scx.learn.netty.http_proxy.util.Helper;
+import cool.scx.lab.netty.http_proxy.util.ClientHttpRequest;
+import cool.scx.lab.netty.http_proxy.util.Helper;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.handler.codec.http.*;

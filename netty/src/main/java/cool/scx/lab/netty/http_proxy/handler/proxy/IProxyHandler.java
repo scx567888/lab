@@ -1,7 +1,7 @@
 package cool.scx.lab.netty.http_proxy.handler.proxy;
 
 
-import cool.scx.learn.netty.http_proxy.util.ClientHttpRequest;
+import cool.scx.lab.netty.http_proxy.util.ClientHttpRequest;
 import io.netty.channel.ChannelHandlerContext;
 
 
