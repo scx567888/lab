@@ -1,11 +1,10 @@
 package cool.scx.lab.netty.http_proxy;
 
 
-
-//import cool.scx.learn.netty5.http_proxy.handler.proxy.HttpProxyHandler;
 import cool.scx.lab.netty.http_proxy.handler.proxy.HttpProxyHandler;
 import cool.scx.lab.netty.http_proxy.handler.proxy.HttpsProxyHandler;
 import cool.scx.lab.netty.http_proxy.handler.proxy.SocksProxyHandler;
+import cool.scx.lab.netty.http_proxy.util.HttpsSupport;
 import cool.scx.logging.ScxLoggerFactory;
 import cool.scx.logging.ScxLoggingLevel;
 import io.netty.bootstrap.ServerBootstrap;
@@ -25,6 +24,7 @@ public class ScxHttpProxyServer {
     private Logger logger = LoggerFactory.getLogger(ScxHttpProxyServer.class);
 
     public static void main(String[] args) {
+        HttpsSupport.getInstance();
         ScxLoggerFactory.defaultConfig().setLevel(ScxLoggingLevel.DEBUG);
         System.out.println("start proxy server");
         int port = 16667;
