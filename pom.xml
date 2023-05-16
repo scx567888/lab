@@ -10,9 +10,24 @@
         <relativePath/>
     </parent>
 
-    <artifactId>learn-java</artifactId>
+    <artifactId>lab</artifactId>
     <version>1.0.0</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>common</module>
+        <module>computer-theory</module>
+        <module>dynamic-java-compiler</module>
+        <module>foreign-function</module>
+        <module>imageio</module>
+        <module>json-parser</module>
+        <module>jvm</module>
+        <module>leet-code</module>
+        <module>netty</module>
+        <module>netty5</module>
+        <module>reflect-and-invoke</module>
+        <module>thread</module>
+    </modules>
 
     <dependencies>
 
