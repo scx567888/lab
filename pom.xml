@@ -15,11 +15,10 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>awt</module>
         <module>common</module>
         <module>computer-theory</module>
         <module>dynamic-java-compiler</module>
-        <module>foreign-function</module>
-        <module>imageio</module>
         <module>json-parser</module>
         <module>jvm</module>
         <module>leet-code</module>
