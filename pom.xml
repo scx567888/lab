@@ -70,7 +70,6 @@
     </dependencies>
 
     <properties>
-        <scx.javaVersion>20</scx.javaVersion>
         <maven.compiler.enablePreview>true</maven.compiler.enablePreview>
         <argLine>--enable-preview</argLine>
     </properties>
