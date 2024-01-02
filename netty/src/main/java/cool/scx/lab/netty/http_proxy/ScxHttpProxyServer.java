@@ -26,7 +26,7 @@ public class ScxHttpProxyServer {
 
     public static void main(String[] args) {
         HttpsSupport.getInstance();
-        ScxLoggerFactory.defaultConfig().setLevel(DEBUG);
+        ScxLoggerFactory.rootConfig().setLevel(DEBUG);
         System.out.println("start proxy server");
         int port = 16667;
         if (args.length > 0) {
