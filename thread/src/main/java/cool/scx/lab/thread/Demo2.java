@@ -10,7 +10,7 @@ public class Demo2 {
         var cache = new ThreadLocal<Integer>();
 
         var threads = IntStream.range(0, 10).mapToObj(index -> Thread.ofVirtual().unstarted(() -> {
-            var random = RandomUtils.randomNumber(0, 100);
+            var random = RandomUtils.randomInt( 100);
             cache.set(random);
             if (index == 0) {
                 System.out.println(Thread.currentThread());
