@@ -33,13 +33,13 @@
         <dependency>
             <groupId>cool.scx</groupId>
             <artifactId>scx-config</artifactId>
-            <version>2.7.0</version>
+            <version>${scx.version}</version>
         </dependency>
 
         <dependency>
             <groupId>cool.scx</groupId>
             <artifactId>scx-logging</artifactId>
-            <version>2.7.0</version>
+            <version>${scx.version}</version>
         </dependency>
 
         <dependency>
@@ -72,6 +72,8 @@
     <properties>
         <maven.compiler.enablePreview>true</maven.compiler.enablePreview>
         <argLine>--enable-preview</argLine>
+        
+        <scx.version>2.7.0</scx.version>
     </properties>
 
 </project>
