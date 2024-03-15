@@ -21,6 +21,7 @@
         <module>dynamic-java-compiler</module>
         <module>json-parser</module>
         <module>jvm</module>
+        <module>learn-cgi</module>
         <module>leet-code</module>
         <module>netty</module>
         <module>netty5</module>
