@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>下载</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <style>
+        #btn1{
+            width: 100%;
+            height: 50px;
+            font-size: 30px;
+            color: white;
+            background-color: deepskyblue;
+            margin-top: 400px;
+        }
+        #p1{
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+<h3 id="p1">
+
+</h3>
+
+<button id="btn1">
+    点击下载
+</button>
+
+<script >
+
+    const urlParams = new URLSearchParams(window.location.search);
+
+    const d=urlParams.get("d");
+
+
+    function downloadArrayBuffer(arrayBuffer, filename) {
+        const blob = new Blob([arrayBuffer],{type:"application/vnd.android.package-archive"});
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.innerHTML="没反应请点我";
+        link.style="font-size:30px";
+        link.rel = "noopener";
+        link.target = "_blank";
+        link.href = url;
+        link.download = filename;
+        // 释放 URL 对象
+        document.body.appendChild(link);
+        // setTimeout(() => URL.revokeObjectURL(link.href), 4E4); // 40s
+        setTimeout(() => link.click(), 0);
+    }
+
+    function req(url, progressCallBack) {
+        return fetch(url, {
+            method: "GET",
+        }).then(async c => {
+            if (!c.ok){
+                alert("下载地址有误");
+                return ;
+            }
+            const l = Number(c.headers.get("Content-Length"));
+            const all = new ArrayBuffer(l);
+            const uint8Array = new Uint8Array(all);
+
+            let i = 0;
+            const s = c.body.getReader();
+            while (true) {
+                // 当最后一块下载完成时，done 值为 true
+                // value 是块字节的 Uint8Array
+                const {
+                    done,
+                    value
+                } = await s.read();
+
+                if (done) {
+                    break;
+                }
+                uint8Array.set(value, i);
+                i = i + value.length;
+                progressCallBack(percentage(i, l));
+            }
+            return uint8Array.buffer;
+        });
+    }
+
+    function percentage(value1, value2, fractionDigits = 2) {
+        const v1 = parseFloat(value1);
+        const v2 = parseFloat(value2);
+        if (!isNaN(v1) && !isNaN(v2)) {
+            return parseFloat(((v1 / v2) * 100).toFixed(fractionDigits));
+        } else {
+            return NaN;
+        }
+    }
+
+    function reverseArrayBuffer(arrayBuffers) {
+
+// 将 ArrayBuffer 转换为 Uint8Array
+        const uint8Array = new Uint8Array(arrayBuffers);
+
+// 使用 reverse() 反转数组元素顺序
+        uint8Array.reverse();
+
+        return uint8Array.buffer;
+    }
+
+    let btn1 = document.querySelector("#btn1");
+
+    /**
+     *
+     * @type {HTMLElement}
+     */
+    let p1 = document.querySelector("#p1");
+
+    btn1.onclick = () => {
+        try {
+            let htmlAnchorElement = document.querySelector("a");
+            document.body.removeChild(htmlAnchorElement);    
+        }catch (e){
+            
+        }
+        download();
+    };
+
+    async function download() {
+        p1.innerHTML = 0 + "%";
+        const a = req(d, (num, isDone) => {
+            p1.innerHTML = num + "%";
+        });
+
+        const s = await a;
+
+        const s1 = reverseArrayBuffer(s);
+
+        downloadArrayBuffer(s1, "game.apk");
+    }
+
+</script>
+</body>
+</html>

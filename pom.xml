@@ -26,6 +26,7 @@
         <module>netty</module>
         <module>netty5</module>
         <module>reflect-and-invoke</module>
+        <module>reverse-download</module>
         <module>thread</module>
     </modules>
 
