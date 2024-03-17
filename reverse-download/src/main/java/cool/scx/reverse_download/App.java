@@ -1,9 +1,9 @@
 package cool.scx.reverse_download;
 
 import cool.scx.config.ScxEnvironment;
-import cool.scx.util.ArrayUtils;
-import cool.scx.util.FileUtils;
-import cool.scx.util.ansi.Ansi;
+import cool.scx.common.util.ArrayUtils;
+import cool.scx.common.util.FileUtils;
+import cool.scx.common.util.ansi.Ansi;
 
 import java.io.File;
 import java.nio.file.Files;

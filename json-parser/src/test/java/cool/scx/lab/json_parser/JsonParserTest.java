@@ -1,8 +1,8 @@
 package cool.scx.lab.json_parser;
 
 import cool.scx.config.ScxEnvironment;
-import cool.scx.util.ObjectUtils;
-import cool.scx.util.StopWatch;
+import cool.scx.common.util.ObjectUtils;
+import cool.scx.common.util.StopWatch;
 import org.testng.annotations.Test;
 
 import java.io.IOException;

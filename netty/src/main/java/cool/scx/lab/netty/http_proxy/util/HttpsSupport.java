@@ -1,6 +1,6 @@
 package cool.scx.lab.netty.http_proxy.util;
 
-import cool.scx.util.StringUtils;
+import cool.scx.common.util.StringUtils;
 import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslContextBuilder;
 import io.netty.handler.ssl.util.InsecureTrustManagerFactory;

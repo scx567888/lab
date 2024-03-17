@@ -1,14 +1,14 @@
 package cool.scx.lab.thread;
 
-import cool.scx.util.StopWatch;
+import cool.scx.common.util.StopWatch;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.IntStream;
 
-import static cool.scx.util.ScxExceptionHelper.ignore;
-import static cool.scx.util.ScxExceptionHelper.wrap;
+import static cool.scx.common.util.ScxExceptionHelper.ignore;
+import static cool.scx.common.util.ScxExceptionHelper.wrap;
 
 public class TestVirtualThread {
 
