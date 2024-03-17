@@ -3,7 +3,7 @@ package cool.scx.lab.leetcode;
 import org.testng.annotations.Test;
 
 import static cool.scx.lab.leetcode.TwoSum.twoSum;
-import static cool.scx.util.ArrayUtils.toObjectArray;
+import static cool.scx.common.util.ArrayUtils.toObjectArray;
 import static org.testng.Assert.assertEqualsNoOrder;
 
 public class TwoSumTest {

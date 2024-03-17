@@ -1,7 +1,7 @@
 package cool.scx.lab.jvm;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import cool.scx.util.ObjectUtils;
+import cool.scx.common.util.ObjectUtils;
 
 public class Main1 {
 

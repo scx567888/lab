@@ -1,6 +1,6 @@
 package cool.scx.lab.reflect_and_invoke;
 
-import cool.scx.util.StopWatch;
+import cool.scx.common.util.StopWatch;
 
 import java.sql.SQLException;
 

@@ -1,6 +1,6 @@
 package cool.scx.lab.thread;
 
-import cool.scx.util.RandomUtils;
+import cool.scx.common.util.RandomUtils;
 
 import java.util.stream.IntStream;
 

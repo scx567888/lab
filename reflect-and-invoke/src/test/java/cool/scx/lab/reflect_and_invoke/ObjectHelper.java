@@ -2,7 +2,7 @@ package cool.scx.lab.reflect_and_invoke;
 
 import cool.scx.lab.reflect_and_invoke.bean.Person;
 import cool.scx.lab.reflect_and_invoke.bean.User;
-import cool.scx.util.ObjectUtils;
+import cool.scx.common.util.ObjectUtils;
 
 import java.lang.invoke.*;
 import java.lang.reflect.Constructor;
