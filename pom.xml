@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>cool.scx</groupId>
+        <artifactId>scx-parent</artifactId>
+        <version>24</version>
+        <relativePath/>
+    </parent>
+
+    <artifactId>lab</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>awt</module>
+        <module>common</module>
+        <module>computer-theory</module>
+        <module>dynamic-java-compiler</module>
+        <module>json-parser</module>
+        <module>jvm</module>
+        <module>learn-cgi</module>
+        <module>leet-code</module>
+        <module>netty</module>
+        <module>netty5</module>
+        <module>reflect-and-invoke</module>
+        <module>reverse-download</module>
+        <module>thread</module>
+    </modules>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>cool.scx</groupId>
+            <artifactId>scx-config</artifactId>
+            <version>${scx.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cool.scx</groupId>
+            <artifactId>scx-logging</artifactId>
+            <version>${scx.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.13</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty5-all</artifactId>
+            <version>5.0.0.Alpha5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcpkix-jdk18on</artifactId>
+            <version>1.78.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.10.2</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <properties>
+        <maven.compiler.enablePreview>true</maven.compiler.enablePreview>
+        <argLine>--enable-preview</argLine>
+        
+        <scx.version>3.0.0</scx.version>
+    </properties>
+
+</project>
