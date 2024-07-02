@@ -29,6 +29,7 @@
         <module>reverse-download</module>
         <module>thread</module>
         <module>ffm</module>
+        <module>future</module>
     </modules>
 
     <dependencies>
