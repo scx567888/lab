@@ -1,17 +1,14 @@
 package cool.scx.lab.ffm;
 
 import com.sun.jna.Pointer;
-import com.sun.jna.platform.win32.Kernel32;
 import com.sun.jna.platform.win32.User32;
 import com.sun.jna.platform.win32.WinDef;
 import cool.scx.common.ansi.Ansi;
 import cool.scx.lab.ffm.ffm.type.IntRef;
 import cool.scx.lab.ffm.ffm.win32.type.RECT;
 
-import java.awt.*;
 import java.lang.foreign.Arena;
 import java.lang.foreign.MemorySegment;
-import java.lang.foreign.ValueLayout;
 
 import static cool.scx.lab.ffm.Helper.FindAllWindow;
 import static cool.scx.lab.ffm.ffm.win32.Kernel32.KERNEL32;
@@ -22,7 +19,7 @@ public class GameBox {
 
 
     public static void main3(String[] args) {
-        var s=new int[Integer.MAX_VALUE/5];
+        var s = new int[Integer.MAX_VALUE / 5];
         MemorySegment memorySegment = MemorySegment.ofArray(s);
         System.out.println();
 //        memorySegment.set(JAVA_LONG,0,1);
@@ -34,13 +31,12 @@ public class GameBox {
         //最小化
 //        boolean b1 = USER32.CloseWindow(notepad);
 
-        var sd=new RECT();
-        boolean b3 = USER32.GetWindowRect(notepad,sd);
+        var sd = new RECT();
+        boolean b3 = USER32.GetWindowRect(notepad, sd);
 
-        var d=new WinDef.RECT();
-        boolean bb = User32.INSTANCE.GetWindowRect(new WinDef.HWND(new Pointer(notepad.address())),d);
+        var d = new WinDef.RECT();
+        boolean bb = User32.INSTANCE.GetWindowRect(new WinDef.HWND(new Pointer(notepad.address())), d);
 //        boolean b2 = USER32.BringWindowToTop(notepad);
-
 
 
         System.out.println();

@@ -11,7 +11,6 @@ import java.util.Arrays;
 import static java.lang.foreign.Linker.nativeLinker;
 import static java.lang.foreign.ValueLayout.*;
 import static java.lang.invoke.MethodHandles.lookup;
-import static java.lang.invoke.MethodType.methodType;
 
 public final class FFMHelper {
 
