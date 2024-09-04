@@ -1,9 +1,6 @@
 package cool.scx.lab.djc;
 
 
-import cool.scx.lab.djc.DynamicJavaCompiler;
-import cool.scx.lab.djc.SourceCode;
-
 import java.lang.reflect.InvocationTargetException;
 import java.net.*;
 import java.util.Arrays;
@@ -28,27 +25,29 @@ public class TestModule {
                         java.lang.System.out.println("并没有效果");
                     }
 
-                    public static final PrintStream out =java.lang.System.out ;
-
+                    public static final PrintStream out =java.lang.System.out;
 
                 }
 
                                 """;
 
-        var code = "public class MyTest {\n" +
-                "    \n" +
-                "    public static void main(String[] args) {\n" +
-                "        System.out.println(\"123\");\n" +
-                "  System.exit(1);"+
-                "    }\n" +
-                "    \n" +
-                "}\n";
+        var code = """
+                public class MyTest {
+
+                    public static String main(String[] args) {
+                        System.out.println("123");
+                        System.exit(1);
+                        return "123";
+                    }
+
+                }
+                """;
         var myTests = DynamicJavaCompiler.compile(new SourceCode("MyTest", code), new SourceCode("java.lang.System", s));
         for (Class<?> myTest : myTests) {
             if (myTest.getName().equals("MyTest")) {
                 var methods = myTest.getDeclaredMethod("main", String[].class);
 
-                methods.invoke(null, new Object[]{new String[]{}});
+                Object invoke = methods.invoke(null, new Object[]{new String[]{}});
 
                 return myTest.getName();
             }

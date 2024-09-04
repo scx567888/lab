@@ -29,7 +29,7 @@
         <module>reverse-download</module>
         <module>thread</module>
         <module>ffm</module>
-        <module>future</module>
+        <module>scx</module>
     </modules>
 
     <dependencies>
@@ -80,7 +80,7 @@
         <maven.compiler.enablePreview>true</maven.compiler.enablePreview>
         <argLine>--enable-preview</argLine>
         
-        <scx.version>3.0.0</scx.version>
+        <scx.version>3.0.7</scx.version>
     </properties>
 
 </project>

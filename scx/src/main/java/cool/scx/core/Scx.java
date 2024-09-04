@@ -19,6 +19,6 @@ public interface Scx {
 
     ScxHttpServer createHttpServer(ScxHttpServerOptions options);
 
-    Vertx vertx();
+    Vertx _vertx();
 
 }

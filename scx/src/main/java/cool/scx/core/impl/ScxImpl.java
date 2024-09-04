@@ -8,10 +8,10 @@ import io.vertx.core.Vertx;
 
 public class ScxImpl implements Scx {
 
-    private final Vertx vertx;
+    private final Vertx _vertx;
 
     public ScxImpl(ScxOptions options) {
-        this.vertx = Vertx.vertx(options.vertxOptions());
+        this._vertx = Vertx.vertx(options._vertxOptions());
     }
 
     @Override
@@ -20,8 +20,8 @@ public class ScxImpl implements Scx {
     }
 
     @Override
-    public Vertx vertx() {
-        return vertx;
+    public Vertx _vertx() {
+        return _vertx;
     }
 
 }
