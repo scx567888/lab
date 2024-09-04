@@ -15,21 +15,19 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>awt</module>
         <module>common</module>
         <module>computer-theory</module>
         <module>dynamic-java-compiler</module>
+        <module>ffm</module>
         <module>json-parser</module>
         <module>jvm</module>
         <module>learn-cgi</module>
-        <module>leet-code</module>
         <module>netty</module>
-        <module>netty5</module>
         <module>reflect-and-invoke</module>
         <module>reverse-download</module>
-        <module>thread</module>
-        <module>ffm</module>
         <module>scx</module>
+        <module>scx-proxy</module>
+        <module>thread</module>
     </modules>
 
     <dependencies>
@@ -75,7 +73,7 @@
 
     <properties>
         
-        <scx.javaVersion>22</scx.javaVersion>
+        <scx.javaVersion>21</scx.javaVersion>
         
         <maven.compiler.enablePreview>true</maven.compiler.enablePreview>
         <argLine>--enable-preview</argLine>
