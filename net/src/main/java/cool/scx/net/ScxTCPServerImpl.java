@@ -38,7 +38,7 @@ public class ScxTCPServerImpl implements ScxTCPServer {
         }
 
         try {
-            this.serverSocket = createServerSocket(options);
+            this.serverSocket = createServerSocket(options.tls());
             this.serverSocket.bind(new InetSocketAddress(options.port()));
         } catch (IOException e) {
             throw new UncheckedIOException(e);
