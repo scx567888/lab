@@ -1,5 +1,6 @@
 package cool.scx.net;
 
+import javax.net.ssl.SSLSocket;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.net.InetSocketAddress;
@@ -71,8 +72,17 @@ public class ScxTCPServerImpl implements ScxTCPServer {
             try {
                 var socket = this.serverSocket.accept();
                 Thread.ofVirtual().start(() -> {
-                    var tcpSocket = new ScxTCPSocketImpl(socket);
-                    connectHandler.accept(tcpSocket);
+                    try {
+                        //尝试握手
+                        if (socket instanceof SSLSocket sslSocket) {
+                            sslSocket.startHandshake();
+                        }
+                        //调用处理器
+                        var tcpSocket = new ScxTCPSocketImpl(socket);
+                        connectHandler.accept(tcpSocket);
+                    } catch (Exception e) {
+                        //暂时忽略
+                    }
                 });
             } catch (IOException e) {
                 throw new UncheckedIOException(e);
