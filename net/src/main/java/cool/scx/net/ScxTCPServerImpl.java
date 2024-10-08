@@ -4,14 +4,15 @@ import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.function.Consumer;
+
+import static cool.scx.net.ScxTCPServerHelper.createServerSocket;
 
 public class ScxTCPServerImpl implements ScxTCPServer {
 
     private final ScxTCPServerOptions options;
     private final Thread serverThread;
-    private Consumer<Socket> connectHandler;
+    private Consumer<ScxTCPSocket> connectHandler;
     private ServerSocket serverSocket;
     private boolean running;
 
@@ -25,7 +26,7 @@ public class ScxTCPServerImpl implements ScxTCPServer {
     }
 
     @Override
-    public ScxTCPServer onConnect(Consumer<Socket> connectHandler) {
+    public ScxTCPServer onConnect(Consumer<ScxTCPSocket> connectHandler) {
         this.connectHandler = connectHandler;
         return this;
     }
@@ -37,7 +38,7 @@ public class ScxTCPServerImpl implements ScxTCPServer {
         }
 
         try {
-            this.serverSocket = new ServerSocket();
+            this.serverSocket = createServerSocket(options);
             this.serverSocket.bind(new InetSocketAddress(options.port()));
         } catch (IOException e) {
             throw new UncheckedIOException(e);
@@ -69,7 +70,10 @@ public class ScxTCPServerImpl implements ScxTCPServer {
         while (running) {
             try {
                 var socket = this.serverSocket.accept();
-                Thread.ofVirtual().start(() -> connectHandler.accept(socket));
+                Thread.ofVirtual().start(() -> {
+                    var tcpSocket = new ScxTCPSocketImpl(socket);
+                    connectHandler.accept(tcpSocket);
+                });
             } catch (IOException e) {
                 throw new UncheckedIOException(e);
             }
