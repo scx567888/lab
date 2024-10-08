@@ -1,7 +1,7 @@
 package cool.scx.net;
 
 public class ScxTCPClientOptions {
-    
+
     private TLS tls;
 
     public ScxTCPClientOptions() {
@@ -14,7 +14,7 @@ public class ScxTCPClientOptions {
 
     public ScxTCPClientOptions tls(TLS tls) {
         this.tls = tls;
-        return this; 
+        return this;
     }
-    
+
 }

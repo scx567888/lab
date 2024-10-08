@@ -3,7 +3,7 @@ package cool.scx.net;
 public class ScxTCPServerOptions {
 
     private int port;
-    
+
     private TLS tls;
 
     public ScxTCPServerOptions() {
@@ -26,7 +26,7 @@ public class ScxTCPServerOptions {
 
     public ScxTCPServerOptions tls(TLS tls) {
         this.tls = tls;
-        return this; 
+        return this;
     }
-    
+
 }
