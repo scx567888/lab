@@ -7,11 +7,10 @@ import java.security.KeyStore;
 
 public class ScxTCPServerHelper {
 
-    public static ServerSocket createServerSocket(ScxTCPServerOptions options) {
-        
+    public static ServerSocket createServerSocket(TLS tls) {
+
         try {
-            var tls = options.tls();
-            
+
             //创建 TLS 的 ServerSocket
             if (tls != null && tls.enabled()) {
 
@@ -19,7 +18,7 @@ public class ScxTCPServerHelper {
                 var keyStore = KeyStore.getInstance(tls.path().toFile(), tls.password().toCharArray());
 
                 // 初始化密钥管理器工厂
-                var keyManagerFactory = KeyManagerFactory.getInstance("NewSunX509");
+                var keyManagerFactory = KeyManagerFactory.getInstance("PKIX");
                 keyManagerFactory.init(keyStore, tls.password().toCharArray());
 
                 // 创建 SSLContext
