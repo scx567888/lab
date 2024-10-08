@@ -67,6 +67,11 @@ public class ScxTCPServerImpl implements ScxTCPServer {
         serverThread.interrupt();
     }
 
+    @Override
+    public int port() {
+        return serverSocket.getLocalPort();
+    }
+
     private void listen() {
         while (running) {
             try {
