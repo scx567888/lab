@@ -18,7 +18,7 @@ public class ScxTCPClientHelper {
                 var keyStore = KeyStore.getInstance(tls.path().toFile(), tls.password().toCharArray());
 
                 // 初始化 TrustManagerFactory
-                TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance("PKIX");
+                var trustManagerFactory = TrustManagerFactory.getInstance("PKIX");
                 trustManagerFactory.init(keyStore);
 
                 // 创建 SSLContext
@@ -37,5 +37,5 @@ public class ScxTCPClientHelper {
         }
 
     }
-    
+
 }
