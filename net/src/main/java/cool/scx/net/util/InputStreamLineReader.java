@@ -1,4 +1,4 @@
-package cool.scx.net;
+package cool.scx.net.util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

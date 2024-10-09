@@ -12,8 +12,8 @@ public class ScxHttpServerResponseImpl implements ScxHttpServerResponse {
     private final ScxHttpServerRequestImpl request;
     private final OutputStream rawOutputStream;
     private final OutputStream outputStream;
-    private HttpStatusCode status;
     private final ScxHttpHeadersWritable headers;
+    private HttpStatusCode status;
     private boolean send;
 
     public ScxHttpServerResponseImpl(ScxHttpServerRequestImpl request, OutputStream outputStream) {

@@ -4,12 +4,15 @@ import cool.scx.http.*;
 import cool.scx.http.uri.ScxURI;
 import cool.scx.net.*;
 
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.function.Consumer;
 
-import static cool.scx.net.InputStreamLineReader.readMatch;
+import static cool.scx.net.util.InputStreamLineReader.readMatch;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class ScxHttpServerImpl implements ScxHttpServer {
@@ -21,7 +24,7 @@ public class ScxHttpServerImpl implements ScxHttpServer {
     private Consumer<Throwable> errorHandler;
 
     public ScxHttpServerImpl(ScxHttpServerOptions options) {
-        this.options=options;
+        this.options = options;
         this.tcpServer = new ScxTCPServerImpl(new ScxTCPServerOptions().port(options.port()).tls((TLS) options.tls()));
         this.tcpServer.onConnect(this::listen);
     }

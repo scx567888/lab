@@ -11,5 +11,5 @@ public interface ScxTCPServer {
     void stop();
 
     int port();
-    
+
 }
