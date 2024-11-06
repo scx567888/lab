@@ -12,11 +12,15 @@ import java.nio.channels.SocketChannel;
 public class TLSSocketChannel extends AbstractSocketChannel {
 
     private final SSLEngine sslEngine;
+    private final ByteBuffer encryptedBuffer;
 
     protected TLSSocketChannel(TLS tls, boolean useClientMode, SocketChannel socketChannel) {
         super(socketChannel);
+        //初始化 ssl 引擎
         this.sslEngine = tls.sslContext().createSSLEngine();
         this.sslEngine.setUseClientMode(useClientMode);
+        //初始化 buffer
+        this.encryptedBuffer = ByteBuffer.allocate(sslEngine.getSession().getPacketBufferSize());
     }
 
     protected TLSSocketChannel(TLS tls, boolean useClientMode) throws IOException {
@@ -75,12 +79,37 @@ public class TLSSocketChannel extends AbstractSocketChannel {
 
     @Override
     public int write(ByteBuffer src) throws IOException {
-        return 0;
+        int bytesWritten = 0;
+        while (src.hasRemaining()) {
+            encryptedBuffer.clear();
+            SSLEngineResult result = sslEngine.wrap(src, encryptedBuffer);
+            switch (result.getStatus()) {
+                case OK:
+                    encryptedBuffer.flip();
+                    while (encryptedBuffer.hasRemaining()) {
+                        bytesWritten += socketChannel.write(encryptedBuffer);
+                    }
+                    break;
+                case BUFFER_OVERFLOW:
+                    throw new IOException("Buffer overflow during TLS write");
+                case BUFFER_UNDERFLOW:
+                    throw new IOException("Buffer underflow during TLS write");
+                case CLOSED:
+                    throw new IOException("SSLEngine closed during write");
+                default:
+                    throw new IllegalStateException("Unexpected SSLEngine result status: " + result.getStatus());
+            }
+        }
+        return bytesWritten;
     }
 
     @Override
     public long write(ByteBuffer[] srcs, int offset, int length) throws IOException {
-        return 0;
+        long totalBytesWritten = 0;
+        for (int i = offset; i < offset + length; i = i + 1) {
+            totalBytesWritten += write(srcs[i]);
+        }
+        return totalBytesWritten;
     }
 
 }
