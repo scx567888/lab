@@ -81,21 +81,23 @@ public class TLSSocketChannel extends AbstractSocketChannel {
     @Override
     public int write(ByteBuffer src) throws IOException {
         int bytesEncrypted = 0; // 初始化加密字节计数
-        var encryptedBuffer = this.encryptedBuffer;
+        var tempBuffer = this.encryptedBuffer;
         while (src.hasRemaining()) {
-            encryptedBuffer.clear();
-            SSLEngineResult result = sslEngine.wrap(src, encryptedBuffer);
+            tempBuffer.clear();
+            var result = sslEngine.wrap(src, tempBuffer);
             bytesEncrypted += result.bytesConsumed(); // 累积加密的数据量
 
             switch (result.getStatus()) {
                 case OK -> {
-                    encryptedBuffer.flip();
-                    while (encryptedBuffer.hasRemaining()) {
-                        socketChannel.write(encryptedBuffer);
+                    tempBuffer.flip();
+                    while (tempBuffer.hasRemaining()) {
+                        socketChannel.write(tempBuffer);
                     }
                 }
                 // 扩展缓冲区大小 尽管 在合理设置缓冲区大小的情况下，不应该发生 BUFFER_OVERFLOW
-                case BUFFER_OVERFLOW -> encryptedBuffer = ByteBuffer.allocate(encryptedBuffer.capacity() * 2);
+                case BUFFER_OVERFLOW -> {
+                    tempBuffer = ByteBuffer.allocate(tempBuffer.capacity() * 2);
+                }
                 case BUFFER_UNDERFLOW -> throw new SSLException("Buffer underflow during TLS write, unexpected state.");
                 case CLOSED -> throw new IOException("SSLEngine closed during write");
             }
