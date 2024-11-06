@@ -15,7 +15,7 @@ public class InputStreamWrapper extends InputStream {
 
     @Override
     public int read() throws IOException {
-        var buffer = ByteBuffer.allocate(1);
+        var buffer = ByteBuffer.wrap(new byte[]{0});
         int read = channel.read(buffer);
         if (read == -1) {
             return -1;
