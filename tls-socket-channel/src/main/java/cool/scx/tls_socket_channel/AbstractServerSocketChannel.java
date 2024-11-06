@@ -12,9 +12,9 @@ public abstract class AbstractServerSocketChannel extends ServerSocketChannel {
 
     protected final ServerSocketChannel serverSocketChannel;
 
-    protected AbstractServerSocketChannel() throws IOException {
+    protected AbstractServerSocketChannel(ServerSocketChannel socketChannel) throws IOException {
         super(SelectorProvider.provider());
-        this.serverSocketChannel = ServerSocketChannel.open();
+        this.serverSocketChannel = socketChannel;
     }
 
     @Override

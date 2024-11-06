@@ -17,10 +17,6 @@ public abstract class AbstractSocketChannel extends SocketChannel {
         this.socketChannel = socketChannel;
     }
 
-    protected AbstractSocketChannel() throws IOException {
-        this(SocketChannel.open());
-    }
-
     @Override
     public SocketChannel bind(SocketAddress local) throws IOException {
         return socketChannel.bind(local);
