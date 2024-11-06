@@ -4,6 +4,7 @@ import cool.scx.net.tls.TLS;
 
 import javax.net.ssl.SSLEngine;
 import javax.net.ssl.SSLEngineResult;
+import javax.net.ssl.SSLException;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
@@ -79,37 +80,38 @@ public class TLSSocketChannel extends AbstractSocketChannel {
 
     @Override
     public int write(ByteBuffer src) throws IOException {
-        int bytesWritten = 0;
+        int bytesEncrypted = 0; // 初始化加密字节计数
+        var encryptedBuffer = this.encryptedBuffer;
         while (src.hasRemaining()) {
             encryptedBuffer.clear();
             SSLEngineResult result = sslEngine.wrap(src, encryptedBuffer);
+            bytesEncrypted += result.bytesConsumed(); // 累积加密的数据量
+
             switch (result.getStatus()) {
-                case OK:
+                case OK -> {
                     encryptedBuffer.flip();
                     while (encryptedBuffer.hasRemaining()) {
-                        bytesWritten += socketChannel.write(encryptedBuffer);
+                        socketChannel.write(encryptedBuffer);
                     }
-                    break;
-                case BUFFER_OVERFLOW:
-                    throw new IOException("Buffer overflow during TLS write");
-                case BUFFER_UNDERFLOW:
-                    throw new IOException("Buffer underflow during TLS write");
-                case CLOSED:
-                    throw new IOException("SSLEngine closed during write");
-                default:
-                    throw new IllegalStateException("Unexpected SSLEngine result status: " + result.getStatus());
+                }
+                // 扩展缓冲区大小 尽管 在合理设置缓冲区大小的情况下，不应该发生 BUFFER_OVERFLOW
+                case BUFFER_OVERFLOW -> encryptedBuffer = ByteBuffer.allocate(encryptedBuffer.capacity() * 2);
+                case BUFFER_UNDERFLOW -> throw new SSLException("Buffer underflow during TLS write, unexpected state.");
+                case CLOSED -> throw new IOException("SSLEngine closed during write");
             }
         }
-        return bytesWritten;
+        return bytesEncrypted;
     }
 
     @Override
     public long write(ByteBuffer[] srcs, int offset, int length) throws IOException {
-        long totalBytesWritten = 0;
-        for (int i = offset; i < offset + length; i = i + 1) {
-            totalBytesWritten += write(srcs[i]);
+        long totalBytesEncrypted = 0;
+        for (int i = offset; i < offset + length; i++) {
+            while (srcs[i].hasRemaining()) {
+                totalBytesEncrypted += write(srcs[i]);
+            }
         }
-        return totalBytesWritten;
+        return totalBytesEncrypted;
     }
 
 }
