@@ -85,10 +85,12 @@ public class TLSSocketChannel extends AbstractSocketChannel {
             switch (result.getStatus()) {
                 case OK -> {
                     applicationDataBuffer.flip();
-                    while (applicationDataBuffer.hasRemaining() && dst.hasRemaining()) {
-                        dst.put(applicationDataBuffer.get());
-                        bytesRead++;
-                    }
+                    int limit = Math.min(applicationDataBuffer.remaining(), dst.remaining());
+                    ByteBuffer tempBuffer = applicationDataBuffer.duplicate(); // 创建临时缓冲区用于批量传输
+                    tempBuffer.limit(tempBuffer.position() + limit);
+                    dst.put(tempBuffer);
+                    applicationDataBuffer.position(applicationDataBuffer.position() + limit);
+                    bytesRead += limit;
                     applicationDataBuffer.compact();
                 }
                 case BUFFER_OVERFLOW -> {
@@ -99,11 +101,12 @@ public class TLSSocketChannel extends AbstractSocketChannel {
                     dst = newBuffer;
                 }
                 case BUFFER_UNDERFLOW -> {
-                    // 调整网络数据缓冲区大小
+                    // 调整网络数据缓冲区大小使用临时缓冲区
                     ByteBuffer newNetDataBuffer = ByteBuffer.allocate(networkDataBuffer.capacity() * 2);
                     networkDataBuffer.flip();
                     newNetDataBuffer.put(networkDataBuffer);
-                    networkDataBuffer = newNetDataBuffer;
+                    networkDataBuffer.clear();
+                    networkDataBuffer.put(newNetDataBuffer);
                     if (socketChannel.read(networkDataBuffer) < 0) {
                         return -1; // 通道已关闭
                     }
@@ -118,6 +121,7 @@ public class TLSSocketChannel extends AbstractSocketChannel {
         }
         return bytesRead;
     }
+
 
     @Override
     public long read(ByteBuffer[] dsts, int offset, int length) throws IOException {
