@@ -19,12 +19,14 @@ public abstract class AbstractSocketChannel extends SocketChannel {
 
     @Override
     public SocketChannel bind(SocketAddress local) throws IOException {
-        return socketChannel.bind(local);
+        socketChannel.bind(local);
+        return this;
     }
 
     @Override
     public <T> SocketChannel setOption(SocketOption<T> name, T value) throws IOException {
-        return socketChannel.setOption(name, value);
+        socketChannel.setOption(name, value);
+        return this;
     }
 
     @Override
@@ -39,12 +41,14 @@ public abstract class AbstractSocketChannel extends SocketChannel {
 
     @Override
     public SocketChannel shutdownInput() throws IOException {
-        return socketChannel.shutdownInput();
+        socketChannel.shutdownInput();
+        return this;
     }
 
     @Override
     public SocketChannel shutdownOutput() throws IOException {
-        return socketChannel.shutdownOutput();
+        socketChannel.shutdownOutput();
+        return this;
     }
 
     @Override
