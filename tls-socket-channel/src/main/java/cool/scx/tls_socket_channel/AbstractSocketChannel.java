@@ -9,7 +9,7 @@ import java.nio.channels.spi.SelectorProvider;
 import java.util.Set;
 
 public abstract class AbstractSocketChannel extends SocketChannel {
-    
+
     protected final SocketChannel socketChannel;
 
     protected AbstractSocketChannel(SocketChannel socketChannel) {
@@ -95,5 +95,5 @@ public abstract class AbstractSocketChannel extends SocketChannel {
     protected void implConfigureBlocking(boolean block) throws IOException {
         socketChannel.configureBlocking(block);
     }
-    
+
 }

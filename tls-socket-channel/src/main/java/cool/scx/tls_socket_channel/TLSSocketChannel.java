@@ -42,5 +42,5 @@ public class TLSSocketChannel extends AbstractSocketChannel {
     public long write(ByteBuffer[] srcs, int offset, int length) throws IOException {
         return 0;
     }
-    
+
 }

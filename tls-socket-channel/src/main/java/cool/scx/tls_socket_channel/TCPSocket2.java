@@ -5,8 +5,6 @@ import cool.scx.net.ScxTCPSocket;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.UncheckedIOException;
-import java.net.Socket;
 import java.net.SocketAddress;
 import java.nio.channels.SocketChannel;
 

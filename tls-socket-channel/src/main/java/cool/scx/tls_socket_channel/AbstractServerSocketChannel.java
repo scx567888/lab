@@ -1,7 +1,5 @@
 package cool.scx.tls_socket_channel;
 
-import cool.scx.net.tls.TLS;
-
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.SocketAddress;
