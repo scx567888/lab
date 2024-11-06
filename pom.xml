@@ -18,6 +18,8 @@
         <module>common</module>
         <module>json-parser</module>
         <module>learn-cgi</module>
+        <module>cron</module>
+        <module>tls-socket-channel</module>
     </modules>
 
     <dependencies>
@@ -31,6 +33,12 @@
         <dependency>
             <groupId>cool.scx</groupId>
             <artifactId>scx-logging</artifactId>
+            <version>${scx.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cool.scx</groupId>
+            <artifactId>scx-net</artifactId>
             <version>${scx.version}</version>
         </dependency>
 
