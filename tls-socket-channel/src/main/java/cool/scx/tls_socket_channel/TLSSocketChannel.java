@@ -28,62 +28,62 @@ public class TLSSocketChannel extends SocketChannel {
 
     @Override
     public SocketChannel bind(SocketAddress local) throws IOException {
-        return null;
+        return socketChannel.bind(local);
     }
 
     @Override
     public <T> SocketChannel setOption(SocketOption<T> name, T value) throws IOException {
-        return null;
+        return socketChannel.setOption(name, value);
     }
 
     @Override
     public <T> T getOption(SocketOption<T> name) throws IOException {
-        return null;
+        return socketChannel.getOption(name);
     }
 
     @Override
     public Set<SocketOption<?>> supportedOptions() {
-        return Set.of();
+        return socketChannel.supportedOptions();
     }
 
     @Override
     public SocketChannel shutdownInput() throws IOException {
-        return null;
+        return socketChannel.shutdownInput();
     }
 
     @Override
     public SocketChannel shutdownOutput() throws IOException {
-        return null;
+        return socketChannel.shutdownOutput();
     }
 
     @Override
     public Socket socket() {
-        return null;
+        return socketChannel.socket();
     }
 
     @Override
     public boolean isConnected() {
-        return false;
+        return socketChannel.isConnected();
     }
 
     @Override
     public boolean isConnectionPending() {
-        return false;
+        return socketChannel.isConnectionPending();
     }
 
     @Override
     public boolean connect(SocketAddress remote) throws IOException {
-        return false;
+        return socketChannel.connect(remote);
     }
 
     @Override
     public boolean finishConnect() throws IOException {
-        return false;
+        return socketChannel.finishConnect();
     }
 
     @Override
     public SocketAddress getRemoteAddress() throws IOException {
-        return null;
+        return socketChannel.getRemoteAddress();
     }
 
     @Override
@@ -108,17 +108,17 @@ public class TLSSocketChannel extends SocketChannel {
 
     @Override
     public SocketAddress getLocalAddress() throws IOException {
-        return null;
+        return socketChannel.getLocalAddress();
     }
 
     @Override
     protected void implCloseSelectableChannel() throws IOException {
-
+        socketChannel.close();
     }
 
     @Override
     protected void implConfigureBlocking(boolean block) throws IOException {
-
+        socketChannel.configureBlocking(block);
     }
 
     public void startHandshake() throws IOException {
