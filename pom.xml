@@ -47,7 +47,7 @@
         
         <maven.compiler.enablePreview>true</maven.compiler.enablePreview>
         <argLine>--enable-preview</argLine>
-        <scx.version>3.1.9</scx.version>
+        <scx.version>3.2.0</scx.version>
     </properties>
 
 </project>
