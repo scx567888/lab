@@ -2,21 +2,23 @@ package cool.scx.tls_socket_channel;
 
 import cool.scx.net.tls.TLS;
 
+import javax.net.ssl.SSLEngine;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 
 public class TLSSocketChannel extends AbstractSocketChannel {
 
-    private final TLS tls;
+    private final SSLEngine sslEngine;
 
-    protected TLSSocketChannel(TLS tls, SocketChannel socketChannel) {
+    protected TLSSocketChannel(TLS tls, boolean useClientMode, SocketChannel socketChannel) {
         super(socketChannel);
-        this.tls = tls;
+        this.sslEngine = tls.sslContext().createSSLEngine();
+        this.sslEngine.setUseClientMode(useClientMode);
     }
 
-    protected TLSSocketChannel(TLS tls) throws IOException {
-        this.tls = tls;
+    protected TLSSocketChannel(TLS tls, boolean useClientMode) throws IOException {
+        this(tls, useClientMode, SocketChannel.open());
     }
 
     public void startHandshake() throws IOException {
