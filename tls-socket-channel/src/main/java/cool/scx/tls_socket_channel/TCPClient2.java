@@ -34,19 +34,19 @@ public class TCPClient2 implements ScxTCPClient {
         //todo 处理代理
         var proxy = options.proxy();
 
-        SocketChannel socket;
+        SocketChannel socketChannel;
         try {
 
             if (tls != null && tls.enabled()) {
-                socket = createSocketChannel(tls);
+                socketChannel = createSocketChannel(tls);
             } else {
-                socket = createSocketChannel();
+                socketChannel = createSocketChannel();
             }
 
-            socket.connect(endpoint);
+            socketChannel.connect(endpoint);
 
             //主动调用握手 快速检测 ssl 错误 防止等到调用用户处理程序时才发现 
-            if (socket instanceof TLSSocketChannel sslSocket) {
+            if (socketChannel instanceof TLSSocketChannel sslSocket) {
                 try {
                     sslSocket.startHandshake();
                 } catch (IOException e) {
@@ -65,7 +65,7 @@ public class TCPClient2 implements ScxTCPClient {
             throw new UncheckedIOException(e);
         }
 
-        return new TCPSocket2(socket);
+        return new TCPSocket2(socketChannel);
 
     }
 
