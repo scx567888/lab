@@ -19,81 +19,81 @@ public abstract class AbstractSocketChannel extends SocketChannel {
 
     @Override
     public SocketChannel bind(SocketAddress local) throws IOException {
-        socketChannel.bind(local);
+        this.socketChannel.bind(local);
         return this;
     }
 
     @Override
     public <T> SocketChannel setOption(SocketOption<T> name, T value) throws IOException {
-        socketChannel.setOption(name, value);
+        this.socketChannel.setOption(name, value);
         return this;
     }
 
     @Override
     public <T> T getOption(SocketOption<T> name) throws IOException {
-        return socketChannel.getOption(name);
+        return this.socketChannel.getOption(name);
     }
 
     @Override
     public Set<SocketOption<?>> supportedOptions() {
-        return socketChannel.supportedOptions();
+        return this.socketChannel.supportedOptions();
     }
 
     @Override
     public SocketChannel shutdownInput() throws IOException {
-        socketChannel.shutdownInput();
+        this.socketChannel.shutdownInput();
         return this;
     }
 
     @Override
     public SocketChannel shutdownOutput() throws IOException {
-        socketChannel.shutdownOutput();
+        this.socketChannel.shutdownOutput();
         return this;
     }
 
     @Override
     public Socket socket() {
-        return socketChannel.socket();
+        return this.socketChannel.socket();
     }
 
     @Override
     public boolean isConnected() {
-        return socketChannel.isConnected();
+        return this.socketChannel.isConnected();
     }
 
     @Override
     public boolean isConnectionPending() {
-        return socketChannel.isConnectionPending();
+        return this.socketChannel.isConnectionPending();
     }
 
     @Override
     public boolean connect(SocketAddress remote) throws IOException {
-        return socketChannel.connect(remote);
+        return this.socketChannel.connect(remote);
     }
 
     @Override
     public boolean finishConnect() throws IOException {
-        return socketChannel.finishConnect();
+        return this.socketChannel.finishConnect();
     }
 
     @Override
     public SocketAddress getRemoteAddress() throws IOException {
-        return socketChannel.getRemoteAddress();
+        return this.socketChannel.getRemoteAddress();
     }
 
     @Override
     public SocketAddress getLocalAddress() throws IOException {
-        return socketChannel.getLocalAddress();
+        return this.socketChannel.getLocalAddress();
     }
 
     @Override
     protected void implCloseSelectableChannel() throws IOException {
-        socketChannel.close();
+        this.socketChannel.close();
     }
 
     @Override
     protected void implConfigureBlocking(boolean block) throws IOException {
-        socketChannel.configureBlocking(block);
+        this.socketChannel.configureBlocking(block);
     }
 
 }
