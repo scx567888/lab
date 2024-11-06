@@ -12,7 +12,7 @@ public class Helper {
         return ServerSocketChannel.open();
     }
 
-    public static ServerSocketChannel createServerSocketChannel(TLS tls) {
+    public static ServerSocketChannel createServerSocketChannel(TLS tls) throws IOException {
         return new TLSServerSocketChannel(tls);
     }
 
@@ -20,7 +20,7 @@ public class Helper {
         return SocketChannel.open();
     }
 
-    public static SocketChannel createSocketChannel(TLS tls) {
+    public static SocketChannel createSocketChannel(TLS tls) throws IOException {
         return new TLSSocketChannel(tls);
     }
     
