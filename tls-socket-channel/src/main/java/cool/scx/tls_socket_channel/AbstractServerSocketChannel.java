@@ -46,17 +46,17 @@ public abstract class AbstractServerSocketChannel extends ServerSocketChannel {
 
     @Override
     public SocketAddress getLocalAddress() throws IOException {
-        return serverSocketChannel.getLocalAddress();
+        return this.serverSocketChannel.getLocalAddress();
     }
 
     @Override
     protected void implCloseSelectableChannel() throws IOException {
-        serverSocketChannel.close();
+        this.serverSocketChannel.close();
     }
 
     @Override
     protected void implConfigureBlocking(boolean block) throws IOException {
-        serverSocketChannel.configureBlocking(block);
+        this.serverSocketChannel.configureBlocking(block);
     }
 
 }
