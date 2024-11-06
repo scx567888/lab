@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 
-//todo 待完成
+//todo 待完成 握手和读取 存在 bug
 public class TLSSocketChannel extends AbstractSocketChannel {
 
     private final SSLEngine sslEngine;
@@ -33,6 +33,7 @@ public class TLSSocketChannel extends AbstractSocketChannel {
     }
 
     public void startHandshake() throws IOException {
+        //todo 测试+优化
         sslEngine.beginHandshake();
         SSLEngineResult.HandshakeStatus handshakeStatus = sslEngine.getHandshakeStatus();
 
@@ -72,6 +73,7 @@ public class TLSSocketChannel extends AbstractSocketChannel {
 
     @Override
     public int read(ByteBuffer dst) throws IOException {
+        //会出现卡死的情况
         int bytesRead = 0; // 初始化读取字节数
 
         // 从通道读取加密数据到 networkDataBuffer
