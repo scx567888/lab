@@ -22,7 +22,7 @@ public class TLSServerSocketChannel extends AbstractServerSocketChannel {
     @Override
     public SocketChannel accept() throws IOException {
         var accept = this.serverSocketChannel.accept();
-        return new TLSSocketChannel(tls, accept);
+        return new TLSSocketChannel(tls, false, accept);
     }
 
 }

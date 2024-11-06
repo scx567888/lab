@@ -12,7 +12,6 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.function.Consumer;
 
-import static cool.scx.tls_socket_channel.Helper.createServerSocketChannel;
 import static java.lang.System.Logger.Level.ERROR;
 
 public class TCPServer2 implements ScxTCPServer {
@@ -50,9 +49,9 @@ public class TCPServer2 implements ScxTCPServer {
 
         try {
             if (tls != null && tls.enabled()) {
-                this.serverSocketChannel = createServerSocketChannel(tls);
+                this.serverSocketChannel = new TLSServerSocketChannel(tls);
             } else {
-                this.serverSocketChannel = createServerSocketChannel();
+                this.serverSocketChannel = ServerSocketChannel.open();
             }
             this.serverSocketChannel.bind(new InetSocketAddress(options.port()));
         } catch (IOException e) {

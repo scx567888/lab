@@ -9,7 +9,6 @@ import java.io.UncheckedIOException;
 import java.net.SocketAddress;
 import java.nio.channels.SocketChannel;
 
-import static cool.scx.tls_socket_channel.Helper.createSocketChannel;
 import static java.lang.System.Logger.Level.ERROR;
 
 public class TCPClient2 implements ScxTCPClient {
@@ -38,9 +37,9 @@ public class TCPClient2 implements ScxTCPClient {
         try {
 
             if (tls != null && tls.enabled()) {
-                socketChannel = createSocketChannel(tls);
+                socketChannel = new TLSSocketChannel(tls, true);
             } else {
-                socketChannel = createSocketChannel();
+                socketChannel = SocketChannel.open();
             }
 
             socketChannel.connect(endpoint);
