@@ -14,14 +14,18 @@ public class TLSSocketChannel extends AbstractSocketChannel {
 
     private final SSLEngine sslEngine;
     private final ByteBuffer encryptedBuffer;
+    private final ByteBuffer networkDataBuffer;
+    private final ByteBuffer applicationDataBuffer;
 
     protected TLSSocketChannel(TLS tls, boolean useClientMode, SocketChannel socketChannel) {
         super(socketChannel);
-        //初始化 ssl 引擎
+        // 初始化 ssl 引擎
         this.sslEngine = tls.sslContext().createSSLEngine();
         this.sslEngine.setUseClientMode(useClientMode);
-        //初始化 buffer
+        // 初始化缓冲区
         this.encryptedBuffer = ByteBuffer.allocate(sslEngine.getSession().getPacketBufferSize());
+        this.networkDataBuffer = ByteBuffer.allocate(sslEngine.getSession().getPacketBufferSize());
+        this.applicationDataBuffer = ByteBuffer.allocate(sslEngine.getSession().getApplicationBufferSize());
     }
 
     protected TLSSocketChannel(TLS tls, boolean useClientMode) throws IOException {
@@ -31,28 +35,26 @@ public class TLSSocketChannel extends AbstractSocketChannel {
     public void startHandshake() throws IOException {
         sslEngine.beginHandshake();
         SSLEngineResult.HandshakeStatus handshakeStatus = sslEngine.getHandshakeStatus();
-        ByteBuffer myNetData = ByteBuffer.allocate(sslEngine.getSession().getPacketBufferSize());
-        ByteBuffer peerNetData = ByteBuffer.allocate(sslEngine.getSession().getPacketBufferSize());
-        ByteBuffer peerAppData = ByteBuffer.allocate(sslEngine.getSession().getApplicationBufferSize());
+
         while (handshakeStatus != SSLEngineResult.HandshakeStatus.FINISHED &&
                 handshakeStatus != SSLEngineResult.HandshakeStatus.NOT_HANDSHAKING) {
             switch (handshakeStatus) {
                 case NEED_UNWRAP:
-                    if (socketChannel.read(peerNetData) < 0) {
+                    if (socketChannel.read(networkDataBuffer) < 0) {
                         throw new IOException("Failed to read data during TLS handshake.");
                     }
-                    peerNetData.flip();
-                    SSLEngineResult unwrapResult = sslEngine.unwrap(peerNetData, peerAppData);
-                    peerNetData.compact();
+                    networkDataBuffer.flip();
+                    SSLEngineResult unwrapResult = sslEngine.unwrap(networkDataBuffer, applicationDataBuffer);
+                    networkDataBuffer.compact();
                     handshakeStatus = unwrapResult.getHandshakeStatus();
                     break;
                 case NEED_WRAP:
-                    myNetData.clear();
-                    SSLEngineResult wrapResult = sslEngine.wrap(ByteBuffer.allocate(0), myNetData);
+                    encryptedBuffer.clear();
+                    SSLEngineResult wrapResult = sslEngine.wrap(ByteBuffer.allocate(0), encryptedBuffer);
                     handshakeStatus = wrapResult.getHandshakeStatus();
-                    myNetData.flip();
-                    while (myNetData.hasRemaining()) {
-                        socketChannel.write(myNetData);
+                    encryptedBuffer.flip();
+                    while (encryptedBuffer.hasRemaining()) {
+                        socketChannel.write(encryptedBuffer);
                     }
                     break;
                 case NEED_TASK:
@@ -70,12 +72,60 @@ public class TLSSocketChannel extends AbstractSocketChannel {
 
     @Override
     public int read(ByteBuffer dst) throws IOException {
-        return 0;
+        int bytesRead = 0; // 初始化读取字节数
+
+        // 从通道读取加密数据到 networkDataBuffer
+        if (socketChannel.read(networkDataBuffer) < 0) {
+            return -1; // 通道已关闭
+        }
+        networkDataBuffer.flip(); // 准备解密
+
+        while (networkDataBuffer.hasRemaining()) {
+            SSLEngineResult result = sslEngine.unwrap(networkDataBuffer, applicationDataBuffer);
+            switch (result.getStatus()) {
+                case OK -> {
+                    applicationDataBuffer.flip();
+                    while (applicationDataBuffer.hasRemaining() && dst.hasRemaining()) {
+                        dst.put(applicationDataBuffer.get());
+                        bytesRead++;
+                    }
+                    applicationDataBuffer.compact();
+                }
+                case BUFFER_OVERFLOW -> {
+                    // 扩展目标缓冲区大小
+                    ByteBuffer newBuffer = ByteBuffer.allocate(dst.capacity() * 2);
+                    dst.flip();
+                    newBuffer.put(dst);
+                    dst = newBuffer;
+                }
+                case BUFFER_UNDERFLOW -> {
+                    // 调整网络数据缓冲区大小
+                    ByteBuffer newNetDataBuffer = ByteBuffer.allocate(networkDataBuffer.capacity() * 2);
+                    networkDataBuffer.flip();
+                    newNetDataBuffer.put(networkDataBuffer);
+                    networkDataBuffer = newNetDataBuffer;
+                    if (socketChannel.read(networkDataBuffer) < 0) {
+                        return -1; // 通道已关闭
+                    }
+                    networkDataBuffer.flip();
+                }
+                case CLOSED -> {
+                    sslEngine.closeOutbound();
+                    return bytesRead;
+                }
+                default -> throw new IllegalStateException("Unexpected SSLEngine result status: " + result.getStatus());
+            }
+        }
+        return bytesRead;
     }
 
     @Override
     public long read(ByteBuffer[] dsts, int offset, int length) throws IOException {
-        return 0;
+        long totalBytesRead = 0;
+        for (int i = offset; i < offset + length; i++) {
+            totalBytesRead += read(dsts[i]);
+        }
+        return totalBytesRead;
     }
 
     @Override
