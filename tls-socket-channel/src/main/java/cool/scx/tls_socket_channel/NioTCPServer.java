@@ -13,9 +13,9 @@ import java.util.function.Consumer;
 
 import static java.lang.System.Logger.Level.ERROR;
 
-public class TCPServer2 implements ScxTCPServer {
+public class NioTCPServer implements ScxTCPServer {
 
-    private static final System.Logger logger = System.getLogger(TCPServer2.class.getName());
+    private static final System.Logger logger = System.getLogger(NioTCPServer.class.getName());
 
     private final ScxTCPServerOptions options;
     private final Thread serverThread;
@@ -23,11 +23,11 @@ public class TCPServer2 implements ScxTCPServer {
     private ServerSocketChannel serverSocketChannel;
     private boolean running;
 
-    public TCPServer2() {
+    public NioTCPServer() {
         this(new ScxTCPServerOptions());
     }
 
-    public TCPServer2(ScxTCPServerOptions options) {
+    public NioTCPServer(ScxTCPServerOptions options) {
         this.options = options;
         this.serverThread = Thread.ofPlatform().unstarted(this::listen);
     }
@@ -118,7 +118,7 @@ public class TCPServer2 implements ScxTCPServer {
             }
         }
 
-        var tcpSocket = new TCPSocket2(socket);
+        var tcpSocket = new NioTCPSocket(socket);
         //调用用户处理器
         connectHandler.accept(tcpSocket);
     }
