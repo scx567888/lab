@@ -11,17 +11,17 @@ import java.nio.channels.SocketChannel;
 
 import static java.lang.System.Logger.Level.ERROR;
 
-public class TCPClient2 implements ScxTCPClient {
+public class NioTCPClient implements ScxTCPClient {
 
-    private static final System.Logger logger = System.getLogger(TCPClient2.class.getName());
+    private static final System.Logger logger = System.getLogger(NioTCPClient.class.getName());
 
     private final ScxTCPClientOptions options;
 
-    public TCPClient2() {
+    public NioTCPClient() {
         this(new ScxTCPClientOptions());
     }
 
-    public TCPClient2(ScxTCPClientOptions options) {
+    public NioTCPClient(ScxTCPClientOptions options) {
         this.options = options;
     }
 
@@ -64,7 +64,7 @@ public class TCPClient2 implements ScxTCPClient {
             throw new UncheckedIOException(e);
         }
 
-        return new TCPSocket2(socketChannel);
+        return new NioTCPSocket(socketChannel);
 
     }
 

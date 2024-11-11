@@ -8,13 +8,13 @@ import java.io.OutputStream;
 import java.net.SocketAddress;
 import java.nio.channels.SocketChannel;
 
-public class TCPSocket2 implements ScxTCPSocket {
+public class NioTCPSocket implements ScxTCPSocket {
 
     private final SocketChannel socketChannel;
     private final InputStream in;
     private final OutputStream out;
 
-    public TCPSocket2(SocketChannel socket) {
+    public NioTCPSocket(SocketChannel socket) {
         this.socketChannel = socket;
         this.in = new InputStreamWrapper(socketChannel);
         this.out = new OutputStreamWrapper(socketChannel);

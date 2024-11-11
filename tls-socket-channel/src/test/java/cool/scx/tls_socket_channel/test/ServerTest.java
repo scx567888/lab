@@ -3,12 +3,8 @@ package cool.scx.tls_socket_channel.test;
 import cool.scx.io.InputStreamDataSupplier;
 import cool.scx.io.LinkedDataReader;
 import cool.scx.net.ScxTCPServerOptions;
-import cool.scx.net.TCPServer;
 import cool.scx.net.tls.TLS;
-import cool.scx.tls_socket_channel.TCPServer2;
-
-import java.io.IOException;
-import java.nio.file.Path;
+import cool.scx.tls_socket_channel.NioTCPServer;
 
 public class ServerTest {
 
@@ -23,7 +19,7 @@ public class ServerTest {
     }
 
     public static void test1() {
-        var tcpServer = new TCPServer2(new ScxTCPServerOptions().port(8899).tls(tls));
+        var tcpServer = new NioTCPServer(new ScxTCPServerOptions().port(8899).tls(tls));
 
         tcpServer.onConnect(c -> {
             System.out.println("客户端连接了 !!!");

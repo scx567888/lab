@@ -1,8 +1,7 @@
 package cool.scx.tls_socket_channel.test;
 
 import cool.scx.net.ScxTCPClientOptions;
-import cool.scx.net.TCPClient;
-import cool.scx.tls_socket_channel.TCPClient2;
+import cool.scx.tls_socket_channel.NioTCPClient;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -22,7 +21,7 @@ public class ClientTest {
         // todo 优化性能 以及再虚拟线程中的 bug
         for (int j = 0; j < 10; j++) {
             Thread.ofVirtual().start(() -> {
-                var tcpClient = new TCPClient2(new ScxTCPClientOptions().tls(tls));
+                var tcpClient = new NioTCPClient(new ScxTCPClientOptions().tls(tls));
                 var tcpSocket = tcpClient.connect(new InetSocketAddress(8899));
                 var out = tcpSocket.outputStream();
                 try {
