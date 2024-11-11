@@ -3,7 +3,6 @@ package cool.scx.tls_socket_channel;
 import cool.scx.net.ScxTCPServer;
 import cool.scx.net.ScxTCPServerOptions;
 import cool.scx.net.ScxTCPSocket;
-import cool.scx.net.TCPServer;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -16,7 +15,7 @@ import static java.lang.System.Logger.Level.ERROR;
 
 public class TCPServer2 implements ScxTCPServer {
 
-    private static final System.Logger logger = System.getLogger(TCPServer.class.getName());
+    private static final System.Logger logger = System.getLogger(TCPServer2.class.getName());
 
     private final ScxTCPServerOptions options;
     private final Thread serverThread;

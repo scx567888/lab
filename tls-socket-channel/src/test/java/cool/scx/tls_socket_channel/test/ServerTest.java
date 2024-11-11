@@ -3,7 +3,7 @@ package cool.scx.tls_socket_channel.test;
 import cool.scx.io.InputStreamDataSupplier;
 import cool.scx.io.LinkedDataReader;
 import cool.scx.net.ScxTCPServerOptions;
-import cool.scx.net.TCPServer;
+import cool.scx.net.ClassicTCPServer;
 import cool.scx.net.tls.TLS;
 import cool.scx.tls_socket_channel.TCPServer2;
 

@@ -1,7 +1,7 @@
 package cool.scx.tls_socket_channel.test;
 
 import cool.scx.net.ScxTCPClientOptions;
-import cool.scx.net.TCPClient;
+import cool.scx.net.ClassicTCPClient;
 import cool.scx.tls_socket_channel.TCPClient2;
 
 import java.io.IOException;
