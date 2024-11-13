@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.SocketAddress;
+import java.nio.channels.Channels;
 import java.nio.channels.SocketChannel;
 
 public class NioTCPSocket implements ScxTCPSocket {
@@ -16,8 +17,8 @@ public class NioTCPSocket implements ScxTCPSocket {
 
     public NioTCPSocket(SocketChannel socket) {
         this.socketChannel = socket;
-        this.in = new InputStreamWrapper(socketChannel);
-        this.out = new OutputStreamWrapper(socketChannel);
+        this.in = Channels.newInputStream(socketChannel);
+        this.out = Channels.newOutputStream(socketChannel);
     }
 
     @Override

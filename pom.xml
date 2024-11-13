@@ -15,10 +15,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>common</module>
-        <module>json-parser</module>
         <module>learn-cgi</module>
-        <module>cron</module>
         <module>tls-socket-channel</module>
     </modules>
 
