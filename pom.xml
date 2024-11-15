@@ -16,7 +16,6 @@
 
     <modules>
         <module>learn-cgi</module>
-        <module>tls-socket-channel</module>
     </modules>
 
     <dependencies>
