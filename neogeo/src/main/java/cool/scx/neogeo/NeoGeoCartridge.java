@@ -7,6 +7,9 @@ public class NeoGeoCartridge {
     public byte[] programRom1;
     public byte[] programRom2;
 
+    // 声音 CPU 程序 ROM, 1块
+    public byte[] soundCpuRom;
+
     // 图像 ROM, 最多8块
     public byte[] characterRom1;
     public byte[] characterRom2;
@@ -16,9 +19,6 @@ public class NeoGeoCartridge {
     public byte[] characterRom6;
     public byte[] characterRom7;
     public byte[] characterRom8;
-
-    // 声音 CPU 程序 ROM, 1块
-    public byte[] soundCpuRom;
 
     // 音频采样 ROM, 最多4块
     public byte[] soundSampleRom1;
