@@ -1,5 +1,6 @@
 package cool.scx.neogeo;
 
+/// NeoGeo 卡带
 public class NeoGeoCartridge {
 
     // 主程序 ROM, 最多2块
