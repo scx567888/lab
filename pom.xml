@@ -16,6 +16,7 @@
 
     <modules>
         <module>learn-cgi</module>
+        <module>neogeo</module>
     </modules>
 
     <dependencies>
