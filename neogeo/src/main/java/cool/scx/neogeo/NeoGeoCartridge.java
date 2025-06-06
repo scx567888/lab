@@ -20,14 +20,14 @@ public class NeoGeoCartridge {
     public byte[] characterRom7;
     public byte[] characterRom8;
 
+    // 固定布局 ROM, 1块
+    public byte[] fixedLayerRom;
+
     // 音频采样 ROM, 最多4块
     public byte[] soundSampleRom1;
     public byte[] soundSampleRom2;
     public byte[] soundSampleRom3;
     public byte[] soundSampleRom4;
-
-    // 固定布局 ROM, 1块
-    public byte[] fixedLayerRom;
 
     // 安全芯片加密ROM, 1块
     public byte[] securityRom;

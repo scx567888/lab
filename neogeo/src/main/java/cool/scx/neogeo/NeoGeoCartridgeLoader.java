@@ -61,6 +61,9 @@ public class NeoGeoCartridgeLoader {
                 } else if (name.endsWith(".c8")) {
                     cartridge.characterRom8 = zis.readAllBytes();
                     System.out.println("加载 characterRom8 成功 !!!");
+                } else if (name.endsWith(".s1")) {
+                    cartridge.fixedLayerRom = zis.readAllBytes();
+                    System.out.println("加载 fixedLayerRom 成功 !!!");
                 } else if (name.endsWith(".v1")) {
                     cartridge.soundSampleRom1 = zis.readAllBytes();
                     System.out.println("加载 soundSampleRom1 成功 !!!");
@@ -73,9 +76,6 @@ public class NeoGeoCartridgeLoader {
                 } else if (name.endsWith(".v4")) {
                     cartridge.soundSampleRom4 = zis.readAllBytes();
                     System.out.println("加载 soundSampleRom4 成功 !!!");
-                } else if (name.endsWith(".s1")) {
-                    cartridge.fixedLayerRom = zis.readAllBytes();
-                    System.out.println("加载 fixedLayerRom 成功 !!!");
                 } else if (name.endsWith("neo-sma")) {
                     cartridge.securityRom = zis.readAllBytes();
                     System.out.println("加载 securityRom 成功 !!!");

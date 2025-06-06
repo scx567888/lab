@@ -108,6 +108,15 @@ public class NeoGeoMemoryMap {
             return 0;
         }
 
+        // 固定图层ROM S1: 0x3000000 - 0x3FFFFFF (16MB)
+        if (address >= 0x3000000 && address <= 0x3FFFFFF) {
+            int offset = address - 0x3000000;
+            if (cartridge.fixedLayerRom != null && offset < cartridge.fixedLayerRom.length) {
+                return cartridge.fixedLayerRom[offset];
+            }
+            return 0;
+        }
+
         // 声音采样ROM V1: 0x4000000 - 0x47FFFFF (8MB)
         if (address >= 0x4000000 && address <= 0x47FFFFF) {
             int offset = address - 0x4000000;
@@ -144,14 +153,7 @@ public class NeoGeoMemoryMap {
             return 0;
         }
 
-        // 固定图层ROM S1: 0x3000000 - 0x3FFFFFF (16MB)
-        if (address >= 0x3000000 && address <= 0x3FFFFFF) {
-            int offset = address - 0x3000000;
-            if (cartridge.fixedLayerRom != null && offset < cartridge.fixedLayerRom.length) {
-                return cartridge.fixedLayerRom[offset];
-            }
-            return 0;
-        }
+        return 0;
 
     }
 
