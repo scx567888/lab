@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.zip.ZipInputStream;
 
+/// 卡带加载器
 public class NeoGeoCartridgeLoader {
 
 
