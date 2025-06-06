@@ -27,6 +27,7 @@ public class NeoGeoMemoryMap {
             return 0;
         }
 
+        // 内存地址重叠时优先读取 声音CPU程序ROM
         // 声音CPU程序ROM M1: 0x2FE0000 - 0x2FFFFFF (128KB)
         if (address >= 0x2FE0000 && address <= 0x2FFFFFF) {
             int offset = address - 0x2FE0000;
@@ -156,6 +157,7 @@ public class NeoGeoMemoryMap {
         return 0;
 
     }
+    
 
     public void writeByte(int address, byte value) {
 
