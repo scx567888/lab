@@ -6,7 +6,7 @@
     <parent>
         <groupId>cool.scx</groupId>
         <artifactId>scx-parent</artifactId>
-        <version>27</version>
+        <version>28</version>
         <relativePath/>
     </parent>
 
@@ -15,6 +15,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>cocos-decoder</module>
         <module>learn-cgi</module>
         <module>neogeo</module>
     </modules>
@@ -30,13 +31,13 @@
         <dependency>
             <groupId>cool.scx</groupId>
             <artifactId>scx-logging</artifactId>
-            <version>${scx.version}</version>
+            <version>${scx-logging.version}</version>
         </dependency>
 
         <dependency>
             <groupId>cool.scx</groupId>
             <artifactId>scx-tcp</artifactId>
-            <version>${scx.version}</version>
+            <version>${scx-tcp.version}</version>
         </dependency>
 
         <dependency>
@@ -49,10 +50,9 @@
     </dependencies>
 
     <properties>
-        
-        <maven.compiler.enablePreview>true</maven.compiler.enablePreview>
-        <argLine>--enable-preview</argLine>
-        <scx.version>3.8.5</scx.version>
+        <scx.version>3.8.10</scx.version>
+        <scx-logging.version>4.1.0</scx-logging.version>
+        <scx-tcp.version>4.1.0</scx-tcp.version>
     </properties>
 
 </project>
