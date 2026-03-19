@@ -1,13 +1,9 @@
 package cool.scx.cocos_decoder;
 
-import com.fasterxml.jackson.core.JsonFactory;
-import cool.scx.object.ScxObject;
-import cool.scx.object.parser.NodeParser;
-import cool.scx.object.parser.json.DuplicateFieldPolicy;
-import cool.scx.object.parser.json.JsonNodeParser;
-import cool.scx.object.parser.json.JsonNodeParserOptions;
-import cool.scx.reflect.ScxReflect;
-import cool.scx.reflect.TypeReference;
+
+
+import dev.scx.reflect.TypeReference;
+import dev.scx.serialize.ScxSerialize;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,9 +18,6 @@ import java.util.stream.Collectors;
 import static cool.scx.cocos_decoder.CocosUUIDUtils.compressUUID;
 
 public class CocosRenamer {
-
-    static JsonFactory jsonFactory = new JsonFactory();
-    private static final NodeParser JSON_PARSER = new JsonNodeParser(jsonFactory, (new JsonNodeParserOptions()).duplicateFieldPolicy(DuplicateFieldPolicy.COVER).maxFieldCount(99999));
 
     static String outFolder = "";
 
@@ -95,7 +88,7 @@ public class CocosRenamer {
         // 读取 config JSON
         Map<String, Object> data;
         try {
-            data = ScxObject.nodeToValue(JSON_PARSER.parse(configFiles[0]), ScxReflect.typeOf(new TypeReference<>() {}));
+            data = ScxSerialize.fromJson(configFiles[0], new TypeReference<>() {});
         } catch (IOException e) {
             e.printStackTrace();
             return false;

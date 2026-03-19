@@ -18,9 +18,15 @@
     <dependencies>
 
         <dependency>
-            <groupId>cool.scx</groupId>
+            <groupId>dev.scx</groupId>
             <artifactId>scx-http-x</artifactId>
-            <version>3.8.10</version>
+            <version>0.3.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>dev.scx</groupId>
+            <artifactId>scx-serialize</artifactId>
+            <version>0.1.4</version>
         </dependency>
 
         <dependency>
