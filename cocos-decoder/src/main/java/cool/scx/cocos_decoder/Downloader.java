@@ -1,7 +1,8 @@
 package cool.scx.cocos_decoder;
 
-import cool.scx.http.x.HttpClient;
-import cool.scx.http.ScxHttpClientResponse;
+import dev.scx.http.x.HttpClient;
+import dev.scx.http.ScxHttpClientResponse;
+import dev.scx.io.ScxIO;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -36,14 +37,14 @@ public class Downloader {
 
             if (url.endsWith("/")) {
                 // 说明是目录，解析 HTML
-                String html = response.body().asString();
+                String html = response.asString();
                 Document doc = Jsoup.parse(html, url); // 设置 base URI，自动处理相对路径
 
                 Elements links = doc.select("a[href]");
                 for (Element link : links) {
                     String href = link.attr("href");
                     if (href.equals("../")) continue; // 跳过返回上级
-                    
+
                     if (href.startsWith("?")) continue;
                     String fullUrl = doc.baseUri() + href;
                     Path subPath = saveDir.resolve(href);
@@ -70,7 +71,7 @@ public class Downloader {
     public static void downloadFile(String url, Path savePath) {
         try {
             ScxHttpClientResponse fileResponse = client.request().uri(url).send();
-            try (InputStream in = fileResponse.body().inputStream()) {
+            try (InputStream in = ScxIO.byteInputToInputStream(fileResponse.body())) {
                 Files.createDirectories(savePath.getParent());
                 Files.copy(in, savePath, StandardCopyOption.REPLACE_EXISTING);
                 System.out.println("保存文件: " + savePath);

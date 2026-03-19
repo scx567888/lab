@@ -4,9 +4,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>cool.scx</groupId>
+        <groupId>dev.scx</groupId>
         <artifactId>scx-parent</artifactId>
-        <version>28</version>
+        <version>1</version>
         <relativePath/>
     </parent>
 
@@ -23,19 +23,13 @@
     <dependencies>
 
         <dependency>
-            <groupId>cool.scx</groupId>
-            <artifactId>scx-config</artifactId>
-            <version>${scx.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>cool.scx</groupId>
+            <groupId>dev.scx</groupId>
             <artifactId>scx-logging</artifactId>
             <version>${scx-logging.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>cool.scx</groupId>
+            <groupId>dev.scx</groupId>
             <artifactId>scx-tcp</artifactId>
             <version>${scx-tcp.version}</version>
         </dependency>
@@ -51,8 +45,8 @@
 
     <properties>
         <scx.version>3.8.10</scx.version>
-        <scx-logging.version>4.1.0</scx-logging.version>
-        <scx-tcp.version>4.1.0</scx-tcp.version>
+        <scx-logging.version>0.0.1</scx-logging.version>
+        <scx-tcp.version>0.1.0</scx-tcp.version>
     </properties>
 
 </project>
