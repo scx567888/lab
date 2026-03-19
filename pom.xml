@@ -29,7 +29,7 @@
         </dependency>
 
         <dependency>
-            <groupId>cool.scx</groupId>
+            <groupId>dev.scx</groupId>
             <artifactId>scx-logging</artifactId>
             <version>${scx-logging.version}</version>
         </dependency>
@@ -51,7 +51,7 @@
 
     <properties>
         <scx.version>3.8.10</scx.version>
-        <scx-logging.version>4.1.0</scx-logging.version>
+        <scx-logging.version>0.0.1</scx-logging.version>
         <scx-tcp.version>4.1.0</scx-tcp.version>
     </properties>
 
