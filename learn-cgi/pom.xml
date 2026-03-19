@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>cool.scx</groupId>
+        <groupId>dev.scx</groupId>
         <artifactId>lab</artifactId>
         <version>1.0.0</version>
     </parent>
