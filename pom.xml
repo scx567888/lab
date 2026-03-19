@@ -37,7 +37,7 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.11.0</version>
+            <version>7.12.0</version>
             <scope>test</scope>
         </dependency>
 
@@ -46,7 +46,7 @@
     <properties>
         <scx.version>3.8.10</scx.version>
         <scx-logging.version>0.0.1</scx-logging.version>
-        <scx-tcp.version>0.1.0</scx-tcp.version>
+        <scx-tcp.version>0.2.0</scx-tcp.version>
     </properties>
 
 </project>
