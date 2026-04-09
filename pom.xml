@@ -44,7 +44,6 @@
     </dependencies>
 
     <properties>
-        <scx.version>3.8.10</scx.version>
         <scx-logging.version>0.0.1</scx-logging.version>
         <scx-tcp.version>0.2.0</scx-tcp.version>
     </properties>
