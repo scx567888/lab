@@ -1,4 +1,4 @@
-package cool.scx.neogeo;
+package dev.scx.neogeo;
 
 import java.io.IOException;
 import java.nio.file.Files;

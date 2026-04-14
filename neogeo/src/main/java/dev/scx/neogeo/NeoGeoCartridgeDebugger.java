@@ -1,4 +1,4 @@
-package cool.scx.neogeo;
+package dev.scx.neogeo;
 
 public class NeoGeoCartridgeDebugger {
 

@@ -1,4 +1,4 @@
-package cool.scx.neogeo;
+package dev.scx.neogeo;
 
 /// NeoGeo 卡带，字段按内存映射地址顺序排列
 public class NeoGeoCartridge {

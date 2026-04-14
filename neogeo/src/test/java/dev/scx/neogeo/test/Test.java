@@ -1,8 +1,8 @@
-package cool.scx.neogeo.test;
+package dev.scx.neogeo.test;
 
-import cool.scx.neogeo.NeoGeoCartridgeDebugger;
-import cool.scx.neogeo.NeoGeoCartridgeLoader;
-import cool.scx.neogeo.NeoGeoMemoryMap;
+import dev.scx.neogeo.NeoGeoCartridgeDebugger;
+import dev.scx.neogeo.NeoGeoCartridgeLoader;
+import dev.scx.neogeo.NeoGeoMemoryMap;
 
 import java.io.IOException;
 import java.nio.file.Path;

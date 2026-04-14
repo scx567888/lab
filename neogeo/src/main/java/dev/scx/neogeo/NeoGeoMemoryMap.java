@@ -1,4 +1,4 @@
-package cool.scx.neogeo;
+package dev.scx.neogeo;
 
 public class NeoGeoMemoryMap {
 
@@ -157,7 +157,7 @@ public class NeoGeoMemoryMap {
         return 0;
 
     }
-    
+
 
     public void writeByte(int address, byte value) {
 
