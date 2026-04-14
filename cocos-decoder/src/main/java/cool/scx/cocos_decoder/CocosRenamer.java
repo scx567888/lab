@@ -1,7 +1,5 @@
 package cool.scx.cocos_decoder;
 
-
-
 import dev.scx.reflect.TypeReference;
 import dev.scx.serialize.ScxSerialize;
 
