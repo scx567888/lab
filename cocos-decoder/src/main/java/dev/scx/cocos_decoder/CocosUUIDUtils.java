@@ -1,4 +1,4 @@
-package cool.scx.cocos_decoder;
+package dev.scx.cocos_decoder;
 
 import java.util.ArrayList;
 import java.util.Arrays;

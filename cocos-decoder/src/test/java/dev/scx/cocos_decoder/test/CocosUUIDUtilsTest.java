@@ -1,9 +1,9 @@
-package cool.scx.cocos_decoder.test;
+package dev.scx.cocos_decoder.test;
 
 import org.testng.Assert;
 
-import static cool.scx.cocos_decoder.CocosUUIDUtils.compressUUID;
-import static cool.scx.cocos_decoder.CocosUUIDUtils.decompressUUID;
+import static dev.scx.cocos_decoder.CocosUUIDUtils.compressUUID;
+import static dev.scx.cocos_decoder.CocosUUIDUtils.decompressUUID;
 
 public class CocosUUIDUtilsTest {
 

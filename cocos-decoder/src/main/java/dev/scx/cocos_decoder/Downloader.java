@@ -1,4 +1,4 @@
-package cool.scx.cocos_decoder;
+package dev.scx.cocos_decoder;
 
 import dev.scx.http.x.HttpClient;
 import dev.scx.http.ScxHttpClientResponse;

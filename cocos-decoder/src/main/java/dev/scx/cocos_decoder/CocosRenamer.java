@@ -1,4 +1,4 @@
-package cool.scx.cocos_decoder;
+package dev.scx.cocos_decoder;
 
 import dev.scx.reflect.TypeReference;
 import dev.scx.serialize.ScxSerialize;
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static cool.scx.cocos_decoder.CocosUUIDUtils.compressUUID;
+import static dev.scx.cocos_decoder.CocosUUIDUtils.compressUUID;
 
 public class CocosRenamer {
 
