@@ -1,7 +1,7 @@
 package dev.scx.cocos_decoder;
 
-import dev.scx.http.x.HttpClient;
 import dev.scx.http.ScxHttpClientResponse;
+import dev.scx.http.x.HttpClient;
 import dev.scx.io.ScxIO;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -10,7 +10,10 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -43,9 +46,13 @@ public class Downloader {
                 Elements links = doc.select("a[href]");
                 for (Element link : links) {
                     String href = link.attr("href");
-                    if (href.equals("../")) continue; // 跳过返回上级
+                    if (href.equals("../")) {
+                        continue; // 跳过返回上级
+                    }
 
-                    if (href.startsWith("?")) continue;
+                    if (href.startsWith("?")) {
+                        continue;
+                    }
                     String fullUrl = doc.baseUri() + href;
                     Path subPath = saveDir.resolve(href);
                     if (href.endsWith("/")) {

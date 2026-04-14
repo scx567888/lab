@@ -22,10 +22,10 @@ public class CocosRenamer {
     public static List<String> traverseAllFiles(String folder) throws IOException {
         try (var paths = Files.walk(Paths.get(folder))) {
             return paths
-                    .filter(Files::isRegularFile)
-                    .map(Path::toAbsolutePath)
-                    .map(Path::toString)
-                    .collect(Collectors.toList());
+                .filter(Files::isRegularFile)
+                .map(Path::toAbsolutePath)
+                .map(Path::toString)
+                .collect(Collectors.toList());
         }
     }
 
@@ -75,8 +75,8 @@ public class CocosRenamer {
         }
 
         String renameFolder = outFolder.isEmpty()
-                ? folder + "out" + File.separator
-                : outFolder;
+            ? folder + "out" + File.separator
+            : outFolder;
 
         File[] configFiles = new File(folder).listFiles((dir, name) -> name.startsWith("config."));
         if (configFiles == null || configFiles.length == 0) {
