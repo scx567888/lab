@@ -1,4 +1,4 @@
-package cool.scx.learn_cgi.day01;
+package dev.scx.learn_cgi.day01;
 
 import javax.swing.*;
 import java.awt.*;
@@ -82,7 +82,7 @@ public class Day01 extends JFrame {
             //loop每运行一边，帧数就+1
             frameIndex++;
 
-            //计算当前的刷新率，并尽量让刷新率保持恒定。 
+            //计算当前的刷新率，并尽量让刷新率保持恒定。
             if (frameIndex % 30 == 0) {
                 double thisTime = System.currentTimeMillis();
                 framePerSecond = (int) (1000 / ((thisTime - lastTime) / 30));
