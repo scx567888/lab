@@ -35,9 +35,27 @@
         </dependency>
 
         <dependency>
+            <groupId>dev.scx</groupId>
+            <artifactId>scx-http-x</artifactId>
+            <version>${scx-http-x.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>dev.scx</groupId>
+            <artifactId>scx-serialize</artifactId>
+            <version>${scx-serialize.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>${jsoup.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.12.0</version>
+            <version>${testng.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -46,6 +64,10 @@
     <properties>
         <scx-logging.version>0.0.1</scx-logging.version>
         <scx-tcp.version>0.2.0</scx-tcp.version>
+        <scx-http-x.version>0.3.4</scx-http-x.version>
+        <scx-serialize.version>0.1.8</scx-serialize.version>
+        <jsoup.version>1.22.1</jsoup.version>
+        <testng.version>7.12.0</testng.version>
     </properties>
 
 </project>

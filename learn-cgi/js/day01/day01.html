@@ -44,7 +44,7 @@
      * @type {ImageData}
      */
     const imageData = new ImageData(screen_w, screen_h);
-    
+
     let frameIndex = 0;
 
     /**
@@ -77,7 +77,7 @@
         }
         frameIndex++;
     }, 20);
-    
+
     function render() {
         context.putImageData(imageData, 0, 0);
         requestAnimationFrame(render);
